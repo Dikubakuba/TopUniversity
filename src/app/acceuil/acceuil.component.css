@@ -1,0 +1,257 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #1f2937;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px; /* élargi pour desktop */
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.logo,
+.img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.notification img {
+  width: 32px;
+  height: 32px;
+}
+.notification {
+  /* background: white; */
+  padding: 0px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+/* Hero */
+.hero h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.hero h1 span {
+  color: #2563eb;
+}
+.hero p {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 8px 8px 8px 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  margin-bottom: 30px;
+  width: 95%;
+  /* max-width: 500px; */
+}
+.search-bar .search-icon {
+  width: 20px;
+  opacity: 0.4;
+  margin-right: 10px;
+}
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  background: transparent;
+}
+.search-bar button {
+  background: #2563eb;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.search-bar button:hover {
+  background: #1d4ed8;
+}
+.search-bar button img {
+  width: 18px;
+  filter: invert(1);
+}
+
+/* Popular */
+.popular {
+  width: 98%;
+}
+.popular-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 95%;
+}
+.popular-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.popular-header a {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.uni-list {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* pour passer à la ligne */
+  padding: 20px;
+}
+.uni-card {
+  background: white;
+  border-radius: 20px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  flex: 1 1 100px;
+  /* s’adapte */
+  /* min-width: 120px; */
+  width: 50px;
+  flex-wrap: wrap;
+  transition: transform 0.2s;
+}
+.uni-card:hover {
+  transform: translateY(-4px);
+}
+.uni-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+.uni-card p {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Why Section */
+.why {
+  background: #eff6ff;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap; /* pour mobile */
+}
+.why h3 {
+  color: #2563eb;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.why ul {
+  list-style: none;
+}
+.why li {
+  font-size: 13px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+.why li span {
+  color: #2563eb;
+  font-weight: 700;
+  margin-right: 8px;
+}
+.why-img img {
+  width: 80px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablettes */
+@media (min-width: 768px) {
+  body {
+    padding: 40px;
+  }
+  .hero h1 {
+    font-size: 36px;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+  .uni-card {
+    flex: 1 1 180px;
+  }
+  .why {
+    justify-content: space-between;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+  .hero h1 {
+    font-size: 42px;
+  }
+  .uni-list {
+    gap: 20px;
+  }
+  .uni-card {
+    flex: 1 1 200px;
+  }
+  .why {
+    padding: 30px;
+  }
+  .why h3 {
+    font-size: 20px;
+  }
+  .why li {
+    font-size: 15px;
+  }
+}
+
+/* Petit mobile */
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+  .search-bar {
+    padding: 6px 6px 6px 12px;
+  }
+  .uni-list {
+    gap: 10px;
+  }
+  .uni-card {
+    flex: 1 1 45%; /* 2 par ligne */
+  }
+}
+/* ————————————————————————————————————————————————————— */
