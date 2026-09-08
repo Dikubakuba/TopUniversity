@@ -5,7 +5,10 @@
       <h1>Résultats</h1>
       <div style="width: 26px"></div>
     </div>
-    <div class="sub">3 universités correspondent<br />à tes critères.</div>
+    <!-- <div class="sub">Les universités correspondent<br />à tes critères.</div> -->
+    <div class="sub">
+      Listage des universités <br />pour une recherche rapide
+    </div>
 
     <div class="filters">
       <div class="filter">
@@ -59,7 +62,7 @@
         </div>
         <div class="info">
           <h3>{{ univ.nom }}</h3>
-          <p>Université Pédagogique<br />Nationale</p>
+          <p>{{ univ.complet }}<br /></p>
           <div class="rating">
             <b>3.8</b><span class="stars">★★★½☆</span
             ><span class="muted">(42 avis)</span>

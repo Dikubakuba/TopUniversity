@@ -16,7 +16,7 @@ body {
 }
 .container {
   width: 100%;
-  max-width: 420px;
+  /* max-width: 420px; */ /* il limite le width de toute les pages */
   padding: 6px 10px 12px;
 }
 .header {
@@ -177,4 +177,3 @@ h1 {
   opacity: 0.8;
 }
 /*  */
-
