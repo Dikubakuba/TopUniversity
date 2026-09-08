@@ -13,16 +13,16 @@ body {
 }
 .phone {
   width: 100%;
-  /* max-width: 400px; */
+  max-width: 400px;
   background: #fff;
   min-height: 100vh;
   position: relative;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
 }
 .header-img {
-  height: 200px;
+  height: 210px;
   width: 100%;
-  /* object-fit: cover; */
+  object-fit: cover;
   display: block;
   border-radius: 0 0 20px 20px;
 }
@@ -63,9 +63,9 @@ body {
   height: 68px;
   object-fit: contain;
 }
-/* .content {
+.content {
   padding: 0 18px 100px;
-} */
+}
 h1 {
   font-size: 32px;
   text-align: center;

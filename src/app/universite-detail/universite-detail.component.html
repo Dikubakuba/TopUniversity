@@ -1,0 +1,97 @@
+<!-- <div *ngIf="universite" style="padding: 20px">
+  <ul>
+    <li *ngFor="let fac of universite.facs">{{ fac }}</li>
+  </ul>
+</div> -->
+<!--  -->
+<div class="phone" *ngIf="universite" style="padding: 20px">
+  <div class="top-bar">
+    <button (click)="retour()">Retour à la page principale</button>
+    <span>♡</span>
+  </div>
+  <img
+    class="header-img"
+    src="https://images.unsplash.com/photo-1562774053-701939374585?w=800"
+    alt="{{ universite.nom }}"
+  />
+  <div class="logo-wrap">
+    <img [src]="universite.logo" alt="logo" />
+  </div>
+  <div class="content">
+    <h1>{{ universite.nom }}</h1>
+    <div class="subtitle">Université de Kinshasa</div>
+    <div class="rating">
+      <b>4.3</b>
+      <div class="stars">★★★★☆</div>
+      <small>(128 avis)</small>
+    </div>
+    <div class="tabs">
+      <button class="tab active">Aperçu</button
+      ><button class="tab">Filières</button><button class="tab">Frais</button
+      ><button class="tab">Avis</button>
+    </div>
+    <h3>À propos</h3>
+    <p class="desc">
+      La plus grande université publique de RDC.<br />Elle offre une large gamme
+      de formations dans plusieurs domaines.
+    </p>
+    <h3>Filières populaires</h3>
+    <div class="chips">
+      <div class="chip">Informatique</div>
+      <div class="chip">Droit</div>
+      <div class="chip">Médecine</div>
+      <div class="chip">Gestion</div>
+      <div class="chip">Économie</div>
+      <div class="chip">Plus...</div>
+    </div>
+    <h3>Frais académiques <small style="color: #777">(approx.)</small></h3>
+    <div class="fees">
+      <div class="fee-row">
+        <span>{{ universite.facs[1] }}</span
+        ><span>950 $ / an</span>
+        <span>{{ universite.ville }}</span>
+      </div>
+      <div class="fee-row">
+        <span>{{ universite.facs[2] }}</span
+        ><span>{{ universite.frais }}/ an</span>
+        <span>{{ universite.ville }}</span>
+      </div>
+      <div class="fee-row">
+        <span>{{ universite.facs[1] }}</span
+        ><span>{{ universite.frais }}/ an</span>
+        <span>{{ universite.ville }}</span>
+      </div>
+      <div class="fee-row">
+        <span>{{ universite.facs[3] }}</span
+        ><span>{{ universite.frais }}/ an</span>
+        <span>{{ universite.ville }}</span>
+      </div>
+      <div class="fee-row">
+        <span>{{ universite.facs[4] }}</span
+        ><span>{{ universite.frais }}/ an</span>
+        <span>{{ universite.ville }}</span>
+      </div>
+      <div class="fee-row">
+        <span>{{ universite.facs[5] }}</span
+        ><span>{{ universite.frais }}/ an</span>
+        <span>{{ universite.ville }}</span>
+      </div>
+      <div class="fee-row">
+        <span>{{ universite.facs[6] }}</span
+        ><span>{{ universite.frais }}/ an</span>
+        <span>{{ universite.ville }}</span>
+      </div>
+    </div>
+    <h3>Points forts</h3>
+    <ul class="strong-list">
+      <li><i>✓</i> Meilleure en sciences et technologies</li>
+      <li><i>✓</i> Large choix de filières</li>
+      <li><i>✓</i> Réseau d'anciens très actif</li>
+    </ul>
+  </div>
+  <div class="bottom-bar">
+    <button class="btn btn-outline">🌐 Site web</button
+    ><button class="btn btn-fill">🗺 Itinéraire</button>
+  </div>
+  <br /><br /><br /><br /><br />
+</div>
