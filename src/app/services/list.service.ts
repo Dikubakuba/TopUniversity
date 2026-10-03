@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ListService {
-  private apiUrl = 'http://localhost:3000/api/users';
+  private apiUrl = 'https://backend-unirank-universite.onrender.com/api/users';
   constructor(private http: HttpClient) {}
 
   getdonner() {
