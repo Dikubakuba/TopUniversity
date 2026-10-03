@@ -33,6 +33,9 @@ export class AcceuilComponent {
   linkpage() {
     this.route.navigate(['/page']);
   }
+  avis(){
+    return this.route.navigate(['/avis'])
+  }
 
   universites = [
     {

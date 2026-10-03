@@ -16,7 +16,11 @@
       </div>
       <div *ngIf="menu == true" class="menu-color">
         <div class="menu-header">
-          <button class="btn-btnF" (click)="menuCommande()">
+          <button
+            style="color: black"
+            class="btn-btnF"
+            (click)="menuCommande()"
+          >
             <h1>X</h1>
           </button>
         </div>
@@ -28,6 +32,7 @@
             <li (click)="linkpage()">Universite</li>
             <li>Conseil</li>
             <li>A Propos</li>
+            <li (click)="avis()">Commenter</li>
           </ul>
         </div>
       </div>
