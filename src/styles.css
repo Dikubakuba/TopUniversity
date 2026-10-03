@@ -1,16 +1,29 @@
-footer {
-  background: var(--secondary-color);
-  color: #fff;
-  padding: 2rem 8%;
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
-footer .logo {
-  color: #fff;
-  margin-bottom: 0.5rem;
+:root {
+  --bg-dark: #081229;
+  --bg-light: #f8f9fb;
+  --bg-white: #fff;
+  --primary: #2f7bff;
+  --primary-soft: #e8f0ff;
+  --text-dark: #121827;
+  --text-gray: #667085;
+  --text-gray-dark: #344054;
+  --border: #eef2f7;
+  --max: 1200px;
+  --shadow: 0 6px 24px rgba(16, 24, 40, 0.06);
+  --shadow-hover: 0 12px 32px rgba(16, 24, 40, 0.12);
 }
-
-footer p {
-  color: var(--text-muted);
-  font-size: 0.85rem;
+.footer {
+  background: var(--bg-dark);
+  height: 250px;
+  color: white;
+  font-weight: bold;
+  /* padding: 50px; */
+  margin: 20px;
+  display: flex;
+}
+.sous-footer {
+  padding: 10px;
+  display: flex;
 }

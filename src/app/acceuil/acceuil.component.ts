@@ -171,15 +171,16 @@ export class AcceuilComponent {
       logoUniv: '',
     },
   ];
-
+  image = [{ photo: 'smile.png' }];
   optionVariable: boolean = true;
   option() {
     this.optionVariable = !this.optionVariable;
   }
-  profil(){
-    
-  }
+  profil() {}
   voirDetail(id: string) {
     this.route.navigate(['/universite', id]);
+  }
+  laisserAvis() {
+    return this.route.navigate(['/avis']);
   }
 }

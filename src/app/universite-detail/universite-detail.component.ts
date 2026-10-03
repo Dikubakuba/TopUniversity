@@ -6,7 +6,7 @@ import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-universite-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './universite-detail.component.html',
 })
 export class UniversiteDetailComponent {

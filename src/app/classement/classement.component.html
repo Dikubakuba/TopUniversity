@@ -1,0 +1,21 @@
+<h2>🏆 Top Universités - Kinshasa</h2>
+
+<!-- SOLUTION : On donne un petit nom #monSelect au select -->
+<!-- Comme ça Angular est sûr que .value existe -->
+<select #monSelect (change)="onSpecialiteChange(monSelect.value)">
+  <option value="informatique">Informatique</option>
+  <option value="droit">Droit</option>
+  <option value="medecine">Médecine</option>
+  <option value="gestion">Gestion</option>
+</select>
+
+<div *ngIf="isLoading">Chargement du classement...</div>
+
+<ul>
+  <li *ngFor="let univ of classement; let i = index">
+    <span
+      ><strong>#{{ i + 1 }} {{ univ.nom }}</strong></span
+    >
+    <span>⭐ {{ univ.score }} ({{ univ.nombreAvis }} avis)</span>
+  </li>
+</ul>

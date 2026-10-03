@@ -1,5 +1,5 @@
 <body>
-  <div class="container">
+  <main class="container">
     <!-- Header -->
     <header>
       <div class="logo">
@@ -32,7 +32,6 @@
         </div>
       </div>
     </header>
-
     <!-- Hero Section -->
     <section class="hero">
       <h1>
@@ -78,24 +77,6 @@
       </div>
     </section>
     <br />
-    <!-- Why Use Guide -->
-    <section class="why">
-      <div class="why-text">
-        <h3>Pourquoi utiliser ce guide ?</h3>
-        <ul>
-          <li><span>✓</span> Infos fiables et à jour</li>
-          <li><span>✓</span> Compare facilement</li>
-          <li><span>✓</span> Avis d'étudiants</li>
-          <li><span>✓</span> Choisis en toute confiance</li>
-        </ul>
-      </div>
-      <div class="why-img">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/3139/3139786.png"
-          alt="Livres et chapeau"
-        />
-      </div>
-    </section>
     <br />
     <div class="">
       <div class="">
@@ -163,7 +144,7 @@
         </div>
       </div>
 
-      <button class="primary">Donner un avis</button>
+      <button class="primary" (click)="laisserAvis()">Donner un avis</button>
 
       <div class="parent-option" *ngIf="optionVariable == false">
         <div class="option">
@@ -286,15 +267,73 @@
           <h2>Top Universités En Vedette</h2>
           <p>Découvrez les universités les mieux classées cette année.</p>
         </div>
-      </section>
-
-      <!-- Footer -->
-      <footer>
-        <div class="footer-content">
-          <div class="logo">Uni<span>Rank</span></div>
-          <p>&copy; 2026 UniRank. Tous droits réservés.</p>
+        <div
+          style="
+            display: flex;
+            width: 98%;
+            justify-content: center;
+            align-items: center;
+          "
+          *ngFor="let img of image"
+        >
+          <img width="80px" [src]="img.photo" alt="" srcset="" />
         </div>
-      </footer>
+      </section>
+      <section class="table-wrapper">
+        <table class="table-style-1">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>NOM</th>
+              <th>STATUT</th>
+              <th>NOTE</th>
+              <th>ÉTOILES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td><strong>ISIPA</strong></td>
+              <td><span class="badge prive">Privé</span></td>
+              <td>Rien pour l'instant</td>
+              <td>⭐ 4.0</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td><strong>UNIKIN</strong></td>
+              <td><span class="badge public">Public</span></td>
+              <td>Très bien</td>
+              <td>⭐ 4.8</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
     </section>
-  </div>
+    <br />
+    <!-- Why Use Guide -->
+    <section class="why">
+      <div class="why-text">
+        <h3>Pourquoi utiliser ce guide ?</h3>
+        <ul>
+          <li><span>✓</span> Infos fiables et à jour</li>
+          <li><span>✓</span> Compare facilement</li>
+          <li><span>✓</span> Avis d'étudiants</li>
+          <li><span>✓</span> Choisis en toute confiance</li>
+        </ul>
+      </div>
+      <div class="why-img">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3139/3139786.png"
+          alt="Livres et chapeau"
+        />
+      </div>
+    </section>
+  </main>
+
+  <br />
+  <!-- <footer class="footer">
+    <section class="">
+      <div class="sous-footer">OUTSOURCED-Entreprise</div>
+    </section>
+  </footer> -->
 </body>
