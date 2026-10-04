@@ -12,9 +12,16 @@ import { PageComponent } from './page/page.component';
 import { UniversiteDetailComponent } from './universite-detail/universite-detail.component';
 import { ClassementComponent } from './classement/classement.component';
 import { AvisComponent } from './avis/avis.component';
+import { EssaiComponent } from './essai/essai.component';
 
 @NgModule({
-  declarations: [AppComponent, AcceuilComponent, PageComponent, AvisComponent],
+  declarations: [
+    AppComponent,
+    AcceuilComponent,
+    PageComponent,
+    AvisComponent,
+    EssaiComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

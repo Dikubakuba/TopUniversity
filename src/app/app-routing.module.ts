@@ -6,6 +6,7 @@ import { PageComponent } from './page/page.component';
 import { UniversiteDetailComponent } from './universite-detail/universite-detail.component';
 import { ClassementComponent } from './classement/classement.component';
 import { AvisComponent } from './avis/avis.component';
+import { EssaiComponent } from './essai/essai.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'universite/:id', component: UniversiteDetailComponent },
   { path: 'classement', component: ClassementComponent },
   { path: 'avis', component: AvisComponent },
-  // {path:'',component:}
+  { path: 'essai', component: EssaiComponent },
   // {path:'',component:}
 ];
 
