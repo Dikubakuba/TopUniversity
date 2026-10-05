@@ -13,6 +13,8 @@ import { UniversiteDetailComponent } from './universite-detail/universite-detail
 import { ClassementComponent } from './classement/classement.component';
 import { AvisComponent } from './avis/avis.component';
 import { EssaiComponent } from './essai/essai.component';
+import { AproposComponent } from './apropos/apropos.component';
+import { ConfigComponent } from './config/config.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { EssaiComponent } from './essai/essai.component';
     PageComponent,
     AvisComponent,
     EssaiComponent,
+    AproposComponent,
+    ConfigComponent,
   ],
   imports: [
     BrowserModule,

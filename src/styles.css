@@ -14,16 +14,3 @@
   --shadow: 0 6px 24px rgba(16, 24, 40, 0.06);
   --shadow-hover: 0 12px 32px rgba(16, 24, 40, 0.12);
 }
-.footer {
-  background: var(--bg-dark);
-  height: 250px;
-  color: white;
-  font-weight: bold;
-  /* padding: 50px; */
-  margin: 20px;
-  display: flex;
-}
-.sous-footer {
-  padding: 10px;
-  display: flex;
-}
