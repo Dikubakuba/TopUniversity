@@ -20,16 +20,19 @@
         <h2>{{ avisList.length }} avis</h2>
         <p>Expériences réelles d'étudiants</p>
         <div class="field">
-          <label>Filtrer</label>
+          <label>Filtrer par université</label>
           <div class="input-box">
             <i class="fa-solid fa-filter"></i>
             <select [(ngModel)]="filtreUniv">
-              <option value="">Toutes les universités</option>
-              <option value="UNIKIN">UNIKIN</option>
-              <option value="UPC">UPC</option>
-              <option value="UCC">UCC</option>
-              <option value="UPN">UPN</option>
-              <option value="ULK">ULK</option>
+              <option value="">
+                Toutes les universités ({{ avisList.length }})
+              </option>
+              <!-- <option *ngFor="let uni of universites" [value]="uni.id">
+                {{ uni.nom }} - {{ uni.complet }}
+              </option> -->
+              <option *ngFor="let uni of universites" [value]="uni.id">
+                {{ uni.nom }}
+              </option>
             </select>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-avis',
   templateUrl: './avis.component.html',
-  styleUrls: ['./avis.component.css'], // <--- CORRIGE ICI : styleUrls avec S
+  styleUrls: ['./avis.component.css'],
 })
 export class AvisComponent implements OnInit {
   universites: any[] = [];
@@ -13,8 +13,11 @@ export class AvisComponent implements OnInit {
   isLoading: boolean = false;
   valueravisForm: any = null;
 
+  // URL backend Render - plus de localhost
+  private apiUrl = 'https://backend-unirank-universite.onrender.com';
+
   avisForm = new FormGroup({
-    universityId: new FormControl('UNIKIN', [Validators.required]),
+    universityId: new FormControl('', [Validators.required]), // vide au début
     nom: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     filiere: new FormControl('', [Validators.required]),
@@ -31,14 +34,26 @@ export class AvisComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/api/users').subscribe({
+    // Charge les universités depuis Render
+    this.http.get(`${this.apiUrl}/api/users`).subscribe({
       next: (data: any) => {
         this.universites = data;
+        console.log('UNIVS RECUES:', data);
+        // Sélectionne la première par défaut si aucune choisie
+        if (
+          this.universites.length > 0 &&
+          !this.avisForm.get('universityId')?.value
+        ) {
+          this.avisForm.get('universityId')?.setValue(this.universites[0].id);
+        }
       },
-      error: (err) => console.error(err),
+      error: (err) => {
+        console.error('ERREUR API /api/users:', err);
+      },
     });
   }
 
+  // Getters pour validation dans HTML
   get nom() {
     return this.avisForm.get('nom');
   }
@@ -65,17 +80,27 @@ export class AvisComponent implements OnInit {
     if (this.avisForm.valid) {
       this.isLoading = true;
       this.http
-        .post('http://localhost:3000/api/reviews', this.avisForm.value)
+        .post(`${this.apiUrl}/api/reviews`, this.avisForm.value)
         .subscribe({
           next: (res: any) => {
             this.isLoading = false;
             alert('Votre avis a été envoyé avec succès!');
-            this.avisForm.reset();
+            // On garde l'universityId après reset
+            const currentUniv = this.avisForm.get('universityId')?.value;
+            this.avisForm.reset({
+              universityId: currentUniv,
+              statut: 'Etudiant actuel',
+              noteGenerale: '5',
+              enseignement: '5',
+              enseignants: '5',
+              infrastructures: '5',
+              vieEtudiante: '5',
+            });
           },
           error: (err) => {
             this.isLoading = false;
-            console.error(err);
-            alert('Erreur sauvegarde');
+            console.error('ERREUR POST /api/reviews:', err);
+            alert('Erreur sauvegarde: ' + (err.error?.error || err.message));
           },
         });
     } else {
