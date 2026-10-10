@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +14,7 @@ import { AvisComponent } from './avis/avis.component';
 import { EssaiComponent } from './essai/essai.component';
 import { AproposComponent } from './apropos/apropos.component';
 import { ConfigComponent } from './config/config.component';
+import { ListageAvisComponent } from './listage-avis/listage-avis.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { ConfigComponent } from './config/config.component';
     EssaiComponent,
     AproposComponent,
     ConfigComponent,
+    ListageAvisComponent,
   ],
   imports: [
     BrowserModule,

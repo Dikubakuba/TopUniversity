@@ -9,6 +9,7 @@ import { AvisComponent } from './avis/avis.component';
 import { EssaiComponent } from './essai/essai.component';
 import { AproposComponent } from './apropos/apropos.component';
 import { ConfigComponent } from './config/config.component';
+import { ListageAvisComponent } from './listage-avis/listage-avis.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'essai', component: EssaiComponent },
   { path: 'apropos', component: AproposComponent },
   { path: 'config', component: ConfigComponent },
+  { path: 'listage-avis', component: ListageAvisComponent },
 ];
 
 @NgModule({

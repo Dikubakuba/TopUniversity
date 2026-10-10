@@ -19,9 +19,8 @@
         </div>
       </div>
 
-      <a href="#" class="back-link">
+      <a routerLink="/universites" class="back-link">
         <i class="fa-solid fa-arrow-left"></i>
-
         Retour aux avis
       </a>
     </header>
@@ -52,7 +51,6 @@
               <div class="check-icon">
                 <i class="fa-solid fa-check"></i>
               </div>
-
               <span> Avis authentiques d'étudiants </span>
             </div>
 
@@ -60,7 +58,6 @@
               <div class="check-icon">
                 <i class="fa-solid fa-check"></i>
               </div>
-
               <span> Notez votre université </span>
             </div>
 
@@ -68,7 +65,6 @@
               <div class="check-icon">
                 <i class="fa-solid fa-check"></i>
               </div>
-
               <span> Comparez les expériences </span>
             </div>
 
@@ -76,22 +72,18 @@
               <div class="check-icon">
                 <i class="fa-solid fa-check"></i>
               </div>
-
               <span> Aidez les futurs étudiants </span>
             </div>
           </div>
         </div>
 
         <!-- Sécurité -->
-
         <div class="privacy-card">
           <div class="privacy-icon">
             <i style="color: green" class="fa-solid fa-shield-halved"></i>
           </div>
-
           <div>
             <strong> Vos données sont protégées </strong>
-
             <p>Votre adresse e-mail ne sera pas affichée publiquement.</p>
           </div>
         </div>
@@ -103,12 +95,9 @@
 
       <section class="review-content">
         <!-- TITRE -->
-
         <div class="page-title">
           <span class="eyebrow"> ESPACE ÉTUDIANT </span>
-
           <h1>Publier un avis</h1>
-
           <p>
             Partagez votre expérience et donnez votre opinion sur votre
             université.
@@ -127,14 +116,11 @@
           <!-- =============================
                          UNIVERSITÉ
                     ============================== -->
-
           <div class="form-card">
             <div class="card-title">
               <div class="step">01</div>
-
               <div>
                 <h2>Votre université</h2>
-
                 <p>Sélectionnez l'établissement que vous souhaitez évaluer.</p>
               </div>
             </div>
@@ -143,44 +129,43 @@
               <div class="university-logo">
                 <i class="fa-solid fa-building-columns"></i>
               </div>
-
               <div class="university-info">
                 <strong> Université de Kinshasa </strong>
-
                 <span> UNIKIN • Kinshasa </span>
               </div>
-
-              <button type="button" class="change-button">Modifier</button>
+              <!-- SELECT POUR CHOISIR LA FAC - BRANCHE A FIREBASE -->
+              <!-- SELECT DYNAMIQUE - RECUPERE DEPUIS FIREBASE -->
+              <select
+                formControlName="universityId"
+                class="change-button"
+                style="border: 1px solid #ccc; padding: 5px; border-radius: 8px"
+              >
+                <option value="">-- Choisir une université --</option>
+                <option *ngFor="let uni of universites" [value]="uni.id">
+                  {{ uni.nom }} ({{ uni.id }})
+                </option>
+              </select>
             </div>
           </div>
 
           <!-- =============================
                          IDENTITÉ
                     ============================== -->
-
           <div class="form-card">
             <div class="card-title">
               <div class="step">02</div>
-
               <div>
                 <h2>Votre profil étudiant</h2>
-
                 <p>Ces informations permettent de contextualiser votre avis.</p>
               </div>
             </div>
 
             <div class="form-grid">
               <!-- Nom -->
-
               <div class="field">
-                <label for="nom">
-                  Nom complet
-                  <span>*</span>
-                </label>
-
+                <label for="nom"> Nom complet <span>*</span> </label>
                 <div class="input-box">
                   <i class="fa-solid fa-user"></i>
-
                   <input
                     formControlName="nom"
                     type="text"
@@ -188,23 +173,17 @@
                     placeholder="Ex. Jean Mukendi"
                     required
                   />
-                  <div class="erreur" *ngIf="nom?.touched && nom?.invalid">
-                    veillez remplir ce champ
-                  </div>
+                </div>
+                <div class="erreur" *ngIf="nom?.touched && nom?.invalid">
+                  veillez remplir ce champ
                 </div>
               </div>
 
               <!-- Email -->
-
               <div class="field">
-                <label for="email">
-                  Adresse e-mail
-                  <span>*</span>
-                </label>
-
+                <label for="email"> Adresse e-mail <span>*</span> </label>
                 <div class="input-box">
                   <i class="fa-solid fa-envelope"></i>
-
                   <input
                     formControlName="email"
                     type="email"
@@ -212,23 +191,17 @@
                     placeholder="exemple@email.com"
                     required
                   />
-                  <div class="erreur" *ngIf="email?.touched && email?.invalid">
-                    veillez remplir ce champ
-                  </div>
+                </div>
+                <div class="erreur" *ngIf="email?.touched && email?.invalid">
+                  veillez remplir ce champ
                 </div>
               </div>
 
               <!-- Filière -->
-
               <div class="field">
-                <label for="filiere">
-                  Filière / Domaine
-                  <span>*</span>
-                </label>
-
+                <label for="filiere"> Filière / Domaine <span>*</span> </label>
                 <div class="input-box">
                   <i class="fa-solid fa-book-open"></i>
-
                   <input
                     formControlName="filiere"
                     type="text"
@@ -236,79 +209,48 @@
                     placeholder="Ex. Informatique"
                     required
                   />
-                  <div
-                    class="erreur"
-                    *ngIf="filiere?.touched && filiere?.invalid"
-                  >
-                    veillez remplir ce champ
-                  </div>
+                </div>
+                <div
+                  class="erreur"
+                  *ngIf="filiere?.touched && filiere?.invalid"
+                >
+                  veillez remplir ce champ
                 </div>
               </div>
 
               <!-- Niveau -->
-
               <div class="field">
-                <label for="niveau">
-                  Niveau d'étude
-                  <span>*</span>
-                </label>
-
+                <label for="niveau"> Niveau d'étude <span>*</span> </label>
                 <div class="input-box">
                   <i class="fa-solid fa-graduation-cap"></i>
-
                   <select id="niveau" formControlName="niveau" required>
-                    <option
-                      value=""
-                      class="erreur"
-                      *ngIf="statut?.touched && statut?.invalid"
-                    >
-                      veillez remplir ce champ
-                    </option>
                     <option value="">Sélectionner</option>
-
-                    <option>1ère année</option>
-
-                    <option>2ème année</option>
-
-                    <option>3ème année</option>
-
-                    <option>4ème année</option>
-
-                    <option>5ème année</option>
-
-                    <option>Master</option>
-
-                    <option>Doctorat</option>
+                    <option value="1ère année">1ère année</option>
+                    <option value="2ème année">2ème année</option>
+                    <option value="3ème année">3ème année</option>
+                    <option value="4ème année">4ème année</option>
+                    <option value="5ème année">5ème année</option>
+                    <option value="Master">Master</option>
+                    <option value="Doctorat">Doctorat</option>
                   </select>
                 </div>
               </div>
             </div>
 
             <!-- Statut -->
-
             <div class="field status-field">
-              <label>
-                Votre statut
-                <span>*</span>
-              </label>
-
+              <label> Votre statut <span>*</span> </label>
               <div class="status-options">
                 <label class="status-option">
                   <input
                     formControlName="statut"
                     type="radio"
                     name="statut"
-                    checked
+                    value="Etudiant actuel"
                   />
-                  <div class="erreur" *ngIf="radio?.touched && radio?.invalid">
-                    veillez remplir ce champ
-                  </div>
-
                   <span class="radio-design"></span>
-
                   <span>
                     <strong> Étudiant actuel </strong>
-
                     <small>
                       Je suis actuellement inscrit dans cette université
                     </small>
@@ -316,13 +258,15 @@
                 </label>
 
                 <label class="status-option">
-                  <input type="radio" name="statut" />
-
+                  <input
+                    formControlName="statut"
+                    type="radio"
+                    name="statut"
+                    value="Ancien étudiant"
+                  />
                   <span class="radio-design"></span>
-
                   <span>
                     <strong> Ancien étudiant </strong>
-
                     <small> J'ai déjà étudié dans cette université </small>
                   </span>
                 </label>
@@ -333,120 +277,122 @@
           <!-- =============================
                          NOTE GÉNÉRALE
                     ============================== -->
-
           <div class="form-card">
             <div class="card-title">
               <div class="step">03</div>
-
               <div>
                 <h2>Votre évaluation</h2>
-
-                <p>Quelle note donnez-vous à votre université ?</p>
+                <p>Quelle note donnez-vous à votre université?</p>
               </div>
             </div>
 
             <div class="rating-area">
               <div class="rating-stars">
-                <input type="radio" id="star5" name="rating" />
-
+                <!-- NOTE GENERALE BRANCHEE A FIREBASE -->
+                <input
+                  type="radio"
+                  id="star5"
+                  value="5"
+                  formControlName="noteGenerale"
+                />
                 <label for="star5"> ★ </label>
-
-                <input type="radio" id="star4" name="rating" />
-
+                <input
+                  type="radio"
+                  id="star4"
+                  value="4"
+                  formControlName="noteGenerale"
+                />
                 <label for="star4"> ★ </label>
-
-                <input type="radio" id="star3" name="rating" />
-
+                <input
+                  type="radio"
+                  id="star3"
+                  value="3"
+                  formControlName="noteGenerale"
+                />
                 <label for="star3"> ★ </label>
-
-                <input type="radio" id="star2" name="rating" />
-
+                <input
+                  type="radio"
+                  id="star2"
+                  value="2"
+                  formControlName="noteGenerale"
+                />
                 <label for="star2"> ★ </label>
-
-                <input type="radio" id="star1" name="rating" />
-
+                <input
+                  type="radio"
+                  id="star1"
+                  value="1"
+                  formControlName="noteGenerale"
+                />
                 <label for="star1"> ★ </label>
               </div>
 
               <div class="rating-description">
-                <strong> Votre note </strong>
-
+                <strong>
+                  Votre note : {{ avisForm.get("noteGenerale")?.value }} / 5
+                </strong>
                 <span> Sélectionnez de 1 à 5 étoiles </span>
               </div>
             </div>
 
             <!-- Sous évaluations -->
-
             <div class="sub-ratings">
               <div class="sub-rating">
                 <div>
-                  <strong> Enseignement </strong>
-
-                  <span> Qualité des cours </span>
+                  <strong> Enseignement </strong
+                  ><span> Qualité des cours </span>
                 </div>
-
-                <select>
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
+                <select formControlName="enseignement">
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                  <option value="3">3</option>
+                  <option value="2">2</option>
+                  <option value="1">1</option>
                 </select>
-
                 <span class="mini-star"> ★ </span>
               </div>
 
               <div class="sub-rating">
                 <div>
-                  <strong> Enseignants </strong>
-
-                  <span> Qualité du corps enseignant </span>
+                  <strong> Enseignants </strong
+                  ><span> Qualité du corps enseignant </span>
                 </div>
-
-                <select>
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
+                <select formControlName="enseignants">
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                  <option value="3">3</option>
+                  <option value="2">2</option>
+                  <option value="1">1</option>
                 </select>
-
                 <span class="mini-star"> ★ </span>
               </div>
 
               <div class="sub-rating">
                 <div>
-                  <strong> Infrastructures </strong>
-
-                  <span> Locaux et équipements </span>
+                  <strong> Infrastructures </strong
+                  ><span> Locaux et équipements </span>
                 </div>
-
-                <select>
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
+                <select formControlName="infrastructures">
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                  <option value="3">3</option>
+                  <option value="2">2</option>
+                  <option value="1">1</option>
                 </select>
-
                 <span class="mini-star"> ★ </span>
               </div>
 
               <div class="sub-rating">
                 <div>
-                  <strong> Vie étudiante </strong>
-
-                  <span> Ambiance et vie universitaire </span>
+                  <strong> Vie étudiante </strong
+                  ><span> Ambiance et vie universitaire </span>
                 </div>
-
-                <select>
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
+                <select formControlName="vieEtudiante">
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                  <option value="3">3</option>
+                  <option value="2">2</option>
+                  <option value="1">1</option>
                 </select>
-
                 <span class="mini-star"> ★ </span>
               </div>
             </div>
@@ -455,14 +401,11 @@
           <!-- =============================
                          COMMENTAIRE
                     ============================== -->
-
           <div class="form-card">
             <div class="card-title">
               <div class="step">04</div>
-
               <div>
                 <h2>Votre expérience</h2>
-
                 <p>
                   Expliquez ce que vous pensez réellement de votre université.
                 </p>
@@ -470,11 +413,7 @@
             </div>
 
             <div class="field">
-              <label for="commentaire">
-                Votre avis
-                <span>*</span>
-              </label>
-
+              <label for="commentaire"> Votre avis <span>*</span> </label>
               <textarea
                 formControlName="commentaire"
                 id="commentaire"
@@ -488,11 +427,11 @@
               >
                 veillez remplir ce champ
               </div>
-
               <div class="textarea-info">
                 <span> Soyez honnête, précis et respectueux. </span>
-
-                <span> 0 / 1000 </span>
+                <span>
+                  {{ avisForm.get("commentaire")?.value?.length || 0 }} / 1000
+                </span>
               </div>
             </div>
           </div>
@@ -500,14 +439,11 @@
           <!-- =============================
                          PHOTO
                     ============================== -->
-
           <div class="form-card">
             <div class="card-title">
               <div class="step">05</div>
-
               <div>
                 <h2>Ajouter une photo</h2>
-
                 <p>
                   Facultatif — partagez une photo de votre expérience
                   universitaire.
@@ -517,15 +453,11 @@
 
             <label class="upload-area">
               <input type="file" accept="image/png,image/jpeg,image/webp" />
-
               <div class="upload-icon">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
               </div>
-
               <strong> Ajouter une photo </strong>
-
               <span> Cliquez pour sélectionner une image </span>
-
               <small> JPG, PNG ou WEBP — 5 Mo maximum </small>
             </label>
           </div>
@@ -533,15 +465,12 @@
           <!-- =============================
                          CONDITIONS
                     ============================== -->
-
           <div class="publication-rules">
             <div class="rules-icon">
               <i class="fa-solid fa-circle-info"></i>
             </div>
-
             <div>
               <strong> Avant de publier </strong>
-
               <p>
                 Votre avis doit refléter votre expérience personnelle. Les
                 contenus insultants, publicitaires, faux ou discriminatoires
@@ -552,21 +481,18 @@
 
           <label class="terms">
             <input type="checkbox" required />
-
             <span class="custom-checkbox"></span>
-
-            <span>
-              Je confirme que cet avis correspond à mon expérience réelle et
-              j'accepte les règles de publication de UniRank.
-            </span>
+            <span
+              >Je confirme que cet avis correspond à mon expérience réelle et
+              j'accepte les règles de publication de UniRank.</span
+            >
           </label>
 
           <!-- =============================
                          ACTIONS
                     ============================== -->
-
           <div class="form-actions">
-            <a href="#" class="cancel-btn"> Annuler </a>
+            <a routerLink="/universites" class="cancel-btn"> Annuler </a>
 
             <button
               [disabled]="avisForm.invalid"
@@ -575,9 +501,10 @@
               class="publish-btn"
             >
               <i class="fa-solid fa-paper-plane"></i>
-
               Publier mon avis
             </button>
+
+            <!-- ALERTE -->
             <section
               style="
                 position: fixed;
@@ -614,7 +541,6 @@
                 </div>
                 <div
                   style="
-                    /* box-shadow: 1px 1px 1px 0 gray; */
                     height: 200px;
                     text-align: center;
                     width: 100%;
@@ -632,9 +558,7 @@
                   <!-- <i class="fa-solid fa-rotate"></i> -->
                   <!-- ———————————————————————————————————————————————————————— -->
                   <!-- Font Awesome alerte ou erreur ou attention -->
-                  <!-- <i
-                    style="font-size: 30px; color: red"
-                    class="fa-solid fa-triangle-exclamation"></i> -->
+                  <!-- <i style="font-size: 30px; color: red" class="fa-solid fa-triangle-exclamation"></i> -->
                   <!-- ———————————————————————————————————————————————————————— -->
                   <!-- Font Awesome actualiser -->
                   <button
@@ -651,20 +575,4 @@
       </section>
     </section>
   </main>
-
-  <!-- =========================================
-         FOOTER
-    ========================================== -->
-  <!--
-  <footer class="footer">
-    <div class="footer-brand">
-      <i class="fa-solid fa-graduation-cap"></i>
-
-      <strong> Uni<span>Rank</span> </strong>
-    </div>
-
-    <p>Trouvez l'université qui correspond à votre avenir.</p>
-
-    <small> © 2026 UniRank — Tous droits réservés. </small>
-  </footer> -->
 </body>

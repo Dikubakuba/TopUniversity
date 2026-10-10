@@ -1,0 +1,105 @@
+<main class="review-page">
+  <header class="top-header">
+    <div class="brand">
+      <div class="brand-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div class="brand-text">
+        <strong>Uni<span>Rank</span></strong
+        ><small>Tous les avis</small>
+      </div>
+    </div>
+    <a routerLink="/avis" class="back-link"
+      ><i class="fa-solid fa-plus"></i> Donner un avis</a
+    >
+  </header>
+
+  <div class="container">
+    <aside class="review-sidebar">
+      <div class="sidebar-card">
+        <h2>{{ avisList.length }} avis</h2>
+        <p>Expériences réelles d'étudiants</p>
+        <div class="field">
+          <label>Filtrer</label>
+          <div class="input-box">
+            <i class="fa-solid fa-filter"></i>
+            <select [(ngModel)]="filtreUniv">
+              <option value="">Toutes les universités</option>
+              <option value="UNIKIN">UNIKIN</option>
+              <option value="UPC">UPC</option>
+              <option value="UCC">UCC</option>
+              <option value="UPN">UPN</option>
+              <option value="ULK">ULK</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="review-content">
+      <div *ngIf="isLoading" class="loading">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <p>Chargement...</p>
+      </div>
+
+      <div *ngIf="!isLoading && avisFiltres.length === 0" class="empty-card">
+        <i class="fa-solid fa-comments"></i>
+        <h3>Aucun avis</h3>
+        <p>Sois le premier !</p>
+        <a routerLink="/avis" class="publish-btn">Publier mon avis</a>
+      </div>
+
+      <!-- CARD PRO -->
+      <div *ngFor="let avis of avisFiltres" class="review-card">
+        <!-- Header -->
+        <div class="rc-header">
+          <div class="rc-avatar"><i class="fa-solid fa-user"></i></div>
+          <div class="rc-info">
+            <h3>{{ avis.nom }}</h3>
+            <span
+              >{{ avis.filiere }} • {{ avis.niveau }} • {{ avis.statut }}</span
+            >
+          </div>
+          <div class="rc-score">
+            <div class="stars">
+              <span *ngFor="let s of getStars(avis.noteGenerale)">★</span>
+            </div>
+            <b>{{ avis.noteGenerale }}/5</b>
+          </div>
+        </div>
+
+        <!-- Meta -->
+        <div class="rc-meta">
+          <span class="univ-badge"
+            ><i class="fa-solid fa-building-columns"></i>
+            {{ avis.universityId }}</span
+          >
+          <span class="date-badge">{{
+            avis.createdAt | date: "dd MMM yyyy"
+          }}</span>
+        </div>
+
+        <!-- Commentaire -->
+        <div class="rc-comment" *ngIf="avis.commentaire">
+          <i class="fa-solid fa-quote-left"></i>
+          <p>{{ avis.commentaire }}</p>
+        </div>
+
+        <!-- Notes -->
+        <div class="rc-ratings">
+          <div class="rate">
+            <label>Enseignement</label><span>{{ avis.enseignement }}/5 ★</span>
+          </div>
+          <div class="rate">
+            <label>Enseignants</label><span>{{ avis.enseignants }}/5 ★</span>
+          </div>
+          <div class="rate">
+            <label>Infrastructures</label
+            ><span>{{ avis.infrastructures }}/5 ★</span>
+          </div>
+          <div class="rate">
+            <label>Vie étudiante</label><span>{{ avis.vieEtudiante }}/5 ★</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
