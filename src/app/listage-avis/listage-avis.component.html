@@ -17,19 +17,15 @@
   <div class="container">
     <aside class="review-sidebar">
       <div class="sidebar-card">
-        <h2>{{ avisList.length }} avis</h2>
+        <h2>{{ avisFiltres.length }} / {{ avisList.length }} avis</h2>
         <p>Expériences réelles d'étudiants</p>
+        <!-- FILTRE DYNAMIQUE -->
         <div class="field">
           <label>Filtrer par université</label>
           <div class="input-box">
             <i class="fa-solid fa-filter"></i>
             <select [(ngModel)]="filtreUniv">
-              <option value="">
-                Toutes les universités ({{ avisList.length }})
-              </option>
-              <!-- <option *ngFor="let uni of universites" [value]="uni.id">
-                {{ uni.nom }} - {{ uni.complet }}
-              </option> -->
+              <option value="">Toutes ({{ avisList.length }})</option>
               <option *ngFor="let uni of universites" [value]="uni.id">
                 {{ uni.nom }}
               </option>
@@ -40,46 +36,54 @@
     </aside>
 
     <section class="review-content">
+      <!-- LOADING -->
       <div *ngIf="isLoading" class="loading">
         <i class="fa-solid fa-spinner fa-spin"></i>
-        <p>Chargement...</p>
+        <p>Chargement des avis...</p>
       </div>
 
+      <!-- EMPTY -->
       <div *ngIf="!isLoading && avisFiltres.length === 0" class="empty-card">
         <i class="fa-solid fa-comments"></i>
         <h3>Aucun avis</h3>
-        <p>Sois le premier !</p>
+        <p *ngIf="avisList.length === 0">
+          Sois le premier à partager ton expérience!
+        </p>
+        <p *ngIf="avisList.length > 0">Aucun avis pour cette université.</p>
         <a routerLink="/avis" class="publish-btn">Publier mon avis</a>
       </div>
 
-      <!-- CARD PRO -->
-      <div *ngFor="let avis of avisFiltres" class="review-card">
+      <!-- CARDS - AFFICHE TOUT DIRECT -->
+      <div *ngFor="let avis of avisFiltres; let i = index" class="review-card">
         <!-- Header -->
         <div class="rc-header">
           <div class="rc-avatar"><i class="fa-solid fa-user"></i></div>
           <div class="rc-info">
-            <h3>{{ avis.nom }}</h3>
+            <h3>{{ avis.nom || "Anonyme" }}</h3>
             <span
-              >{{ avis.filiere }} • {{ avis.niveau }} • {{ avis.statut }}</span
+              >{{ avis.filiere || "-" }} • {{ avis.niveau || "-" }} •
+              {{ avis.statut || "-" }}</span
             >
           </div>
           <div class="rc-score">
             <div class="stars">
               <span *ngFor="let s of getStars(avis.noteGenerale)">★</span>
             </div>
-            <b>{{ avis.noteGenerale }}/5</b>
+            <b>{{ avis.noteGenerale || 0 }}/5</b>
           </div>
         </div>
 
         <!-- Meta -->
         <div class="rc-meta">
-          <span class="univ-badge"
-            ><i class="fa-solid fa-building-columns"></i>
-            {{ avis.universityId }}</span
-          >
-          <span class="date-badge">{{
-            avis.createdAt | date: "dd MMM yyyy"
-          }}</span>
+          <span class="univ-badge">
+            <i class="fa-solid fa-building-columns"></i>
+            {{ getNomUniv(avis.universityId) }}
+          </span>
+          <span class="date-badge">
+            {{
+              avis.createdAt ? (avis.createdAt | date: "dd MMM yyyy") : "Récent"
+            }}
+          </span>
         </div>
 
         <!-- Commentaire -->
@@ -88,23 +92,47 @@
           <p>{{ avis.commentaire }}</p>
         </div>
 
-        <!-- Notes -->
+        <!-- Notes détaillées -->
         <div class="rc-ratings">
           <div class="rate">
-            <label>Enseignement</label><span>{{ avis.enseignement }}/5 ★</span>
+            <label>Enseignement</label
+            ><span>{{ avis.enseignement || 0 }}/5 ★</span>
           </div>
           <div class="rate">
-            <label>Enseignants</label><span>{{ avis.enseignants }}/5 ★</span>
+            <label>Enseignants</label
+            ><span>{{ avis.enseignants || 0 }}/5 ★</span>
           </div>
           <div class="rate">
             <label>Infrastructures</label
-            ><span>{{ avis.infrastructures }}/5 ★</span>
+            ><span>{{ avis.infrastructures || 0 }}/5 ★</span>
           </div>
           <div class="rate">
-            <label>Vie étudiante</label><span>{{ avis.vieEtudiante }}/5 ★</span>
+            <label>Vie étudiante</label
+            ><span>{{ avis.vieEtudiante || 0 }}/5 ★</span>
           </div>
         </div>
       </div>
     </section>
+  </div>
+
+  <div
+    style="display: flex; position: fixed; left: 0; bottom: 0; padding: 20px"
+  >
+    <a
+      routerLink="/"
+      style="
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        color: black;
+        text-decoration: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        padding: 10px;
+        font-weight: bold;
+      "
+    >
+      <i class="fa-solid fa-arrow-left"></i>
+      Retour aux avis
+    </a>
   </div>
 </main>
