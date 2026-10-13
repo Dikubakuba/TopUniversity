@@ -19,7 +19,6 @@
       <div class="sidebar-card">
         <h2>{{ avisFiltres.length }} / {{ avisList.length }} avis</h2>
         <p>Expériences réelles d'étudiants</p>
-        <!-- FILTRE DYNAMIQUE -->
         <div class="field">
           <label>Filtrer par université</label>
           <div class="input-box">
@@ -53,13 +52,16 @@
         <a routerLink="/avis" class="publish-btn">Publier mon avis</a>
       </div>
 
-      <!-- CARDS - AFFICHE TOUT DIRECT -->
-      <div *ngFor="let avis of avisFiltres; let i = index" class="review-card">
+      <!-- CARDS - CORRIGÉ AVEC TRACKBY -->
+      <div
+        *ngFor="let avis of avisFiltres; trackBy: trackById"
+        class="review-card"
+      >
         <!-- Header -->
         <div class="rc-header">
           <div class="rc-avatar"><i class="fa-solid fa-user"></i></div>
           <div class="rc-info">
-            <h3>{{ avis.nom || "Anonyme" }}</h3>
+            <h3>{{ avis.nom || avis.userName || "Anonyme" }}</h3>
             <span
               >{{ avis.filiere || "-" }} • {{ avis.niveau || "-" }} •
               {{ avis.statut || "-" }}</span
@@ -67,9 +69,16 @@
           </div>
           <div class="rc-score">
             <div class="stars">
-              <span *ngFor="let s of getStars(avis.noteGenerale)">★</span>
+              <span
+                *ngFor="
+                  let s of getStars(
+                    avis.noteGenerale || avis.note || avis.moyenne
+                  )
+                "
+                >★</span
+              >
             </div>
-            <b>{{ avis.noteGenerale || 0 }}/5</b>
+            <b>{{ avis.noteGenerale || avis.note || avis.moyenne || 0 }}/5</b>
           </div>
         </div>
 
@@ -77,7 +86,7 @@
         <div class="rc-meta">
           <span class="univ-badge">
             <i class="fa-solid fa-building-columns"></i>
-            {{ getNomUniv(avis.universityId) }}
+            {{ getNomUniv(avis.universityId || avis.univId) }}
           </span>
           <span class="date-badge">
             {{
@@ -86,29 +95,48 @@
           </span>
         </div>
 
-        <!-- Commentaire -->
-        <div class="rc-comment" *ngIf="avis.commentaire">
+        <!-- Commentaire - Affiche même si vide pour debug -->
+        <div class="rc-comment">
           <i class="fa-solid fa-quote-left"></i>
-          <p>{{ avis.commentaire }}</p>
+          <p>
+            {{
+              avis.commentaire ||
+                avis.comment ||
+                avis.message ||
+                avis.avis ||
+                "Aucun commentaire laissé"
+            }}
+          </p>
         </div>
 
-        <!-- Notes détaillées -->
+        <!-- Notes détaillées avec fallback sur plusieurs noms possibles -->
         <div class="rc-ratings">
           <div class="rate">
             <label>Enseignement</label
-            ><span>{{ avis.enseignement || 0 }}/5 ★</span>
+            ><span
+              >{{ avis.enseignement || avis.noteEnseignement || 0 }}/5 ★</span
+            >
           </div>
           <div class="rate">
             <label>Enseignants</label
-            ><span>{{ avis.enseignants || 0 }}/5 ★</span>
+            ><span
+              >{{ avis.enseignants || avis.noteEnseignants || 0 }}/5 ★</span
+            >
           </div>
           <div class="rate">
             <label>Infrastructures</label
-            ><span>{{ avis.infrastructures || 0 }}/5 ★</span>
+            ><span
+              >{{
+                avis.infrastructures ||
+                  avis.noteInfra ||
+                  avis.infrastructure ||
+                  0
+              }}/5 ★</span
+            >
           </div>
           <div class="rate">
             <label>Vie étudiante</label
-            ><span>{{ avis.vieEtudiante || 0 }}/5 ★</span>
+            ><span>{{ avis.vieEtudiante || avis.vie || 0 }}/5 ★</span>
           </div>
         </div>
       </div>

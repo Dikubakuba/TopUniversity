@@ -33,8 +33,23 @@ export class ListageAvisComponent implements OnInit {
     this.http.get<any[]>(`${this.apiUrl}/api/all-reviews`).subscribe({
       next: (data) => {
         console.log('DATA BRUTE BACKEND:', data);
-        // ON NE FILTRE PLUS - on affiche tout même si commentaire vide
-        this.avisList = Array.isArray(data) ? data : [];
+        const raw = Array.isArray(data) ? data : [];
+
+        // 1. Dédoublonnage par ID
+        const map = new Map<string, any>();
+        raw.forEach((item) => {
+          const key = item.id || item._id || item.docId;
+          if (key) {
+            if (!map.has(key)) map.set(key, item);
+          } else {
+            // Si pas d'id, on utilise le contenu comme clé
+            const fallbackKey = JSON.stringify(item);
+            if (!map.has(fallbackKey)) map.set(fallbackKey, item);
+          }
+        });
+
+        this.avisList = Array.from(map.values());
+        console.log(`Nettoyé: ${raw.length} -> ${this.avisList.length}`);
         this.isLoading = false;
       },
       error: (err) => {
@@ -61,5 +76,9 @@ export class ListageAvisComponent implements OnInit {
   getNomUniv(id: string) {
     const uni = this.universites.find((u) => u.id === id);
     return uni ? uni.nom : id;
+  }
+
+  trackById(index: number, item: any): string {
+    return item.id || item._id || index.toString();
   }
 }
