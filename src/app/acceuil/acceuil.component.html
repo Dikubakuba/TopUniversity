@@ -1,7 +1,7 @@
 <body>
   <main class="container">
     <!-- Header -->
-    <header>
+    <header id="hebdo">
       <div class="logo">
         <img class="img" src="logoUniv.jpeg" alt="Logo Chapeau" />
       </div>
@@ -21,20 +21,45 @@
             class="btn-btnF"
             (click)="menuCommande()"
           >
-            <h1>X</h1>
+            <h3>X</h3>
           </button>
         </div>
         <!-- ...........contenaire de docunent du menu -->
         <div>
           <ul class="ul-menu">
-            <li routerLink="/">Acceuil</li>
-            <li>Top List Unversite</li>
-            <li (click)="linkpage()">Universite</li>
-            <li>Conseil</li>
-            <li (click)="avis()">Commenter</li>
-            <li routerLink="/apropos">A Propos</li>
-            <li routerLink="/config">Confidentialites</li>
-            <li routerLink="/listage-avis">Voir les Avis</li>
+            <a href="#"><li routerLink="/">Accueil</li></a>
+            <!-- —————————————————————————————————————————————————— -->
+
+            <!-- <a href="">
+              <li>Top List Unversite</li>
+            </a> -->
+            <!-- —————————————————————————————————————————————————— -->
+
+            <!-- <a (click)="linkpage()">
+              <li (click)="linkpage()">Universite</li>
+            </a> -->
+            <!-- —————————————————————————————————————————————————— -->
+
+            <!-- <a href="">
+              <li>Conseil</li>
+            </a> -->
+            <!-- —————————————————————————————————————————————————— -->
+
+            <a href="avis"> <li (click)="avis()">Commenter</li> </a>
+            <!-- —————————————————————————————————————————————————— -->
+
+            <a href="apropos">
+              <li routerLink="/apropos">A Propos</li>
+            </a>
+            <!-- —————————————————————————————————————————————————— -->
+
+            <a href="config">
+              <li routerLink="/config">Confidentialites</li>
+            </a>
+            <!-- —————————————————————————————————————————————————— -->
+            <a href="listage-avis">
+              <li routerLink="/listage-avis">Voir les Avis</li>
+            </a>
           </ul>
         </div>
       </div>

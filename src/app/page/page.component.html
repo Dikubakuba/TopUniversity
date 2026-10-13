@@ -2,7 +2,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="back" routerLink="/acceuil">←</div>
+      <div class="back" routerLink="/">←</div>
       <h1>Résultats</h1>
       <div style="width: 26px"></div>
     </div>
@@ -52,9 +52,15 @@
       <div class="modifier">Modifier</div>
     </div>
     <!-- UPN -->
-    <div
+
+    <!-- <div
       class="card"
       *ngFor="let univ of Mavariable"
+      (click)="voirDetail(univ.id)"
+    > -->
+    <div
+      class="card"
+      *ngFor="let univ of University"
       (click)="voirDetail(univ.id)"
     >
       <div class="card-top">

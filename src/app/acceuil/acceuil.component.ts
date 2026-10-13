@@ -47,13 +47,13 @@ export class AcceuilComponent {
       etoile: '⭐ 4.0',
       domaine: 'Droit',
     },
-    // {
-    //   id: 'UPC',
-    //   nom: 'Université Protestante du congo',
-    //   complet: 'Université Protestante',
-    //   desc: 'Excellence et valeurs',
-    //   logo: 'https://th.bing.com/th/id/OIP.odT1r1ltS0mP5vBKNro0GAHaHa?w=158&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
-    // },
+    {
+      id: 'UPC',
+      nom: 'Université Protestante du congo',
+      complet: 'Université Protestante',
+      desc: 'Excellence et valeurs',
+      logo: 'https://th.bing.com/th/id/OIP.odT1r1ltS0mP5vBKNro0GAHaHa?w=158&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+    },
     {
       id: 'UCC',
       nom: 'Université Catholique du congo',
@@ -76,6 +76,7 @@ export class AcceuilComponent {
     },
     {
       id: 'ISIPA',
+      complet: "Institut Supérieur d'Informatique Programmation et Analyse",
       nom: 'Institut Supérieur de l’Informatique et de la Programmation Appliquée',
       logo: 'data:image/webp;base64,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',
       site: 'https://www.isipa.sn/',

@@ -21,35 +21,48 @@ export class ListageAvisComponent implements OnInit {
     this.loadAvis();
   }
 
+  // Charge la liste des facs pour afficher leur nom
   loadUnivs() {
     this.http.get<any[]>(`${this.apiUrl}/api/users`).subscribe({
       next: (data) => (this.universites = data || []),
-      error: (err) => console.error(err),
+      error: (err) => console.error('Erreur univ:', err),
     });
   }
 
+  // Charge tous les avis - CORRIGÉ POUR LE NOUVEAU BACKEND
   loadAvis() {
     this.isLoading = true;
-    this.http.get<any[]>(`${this.apiUrl}/api/all-reviews`).subscribe({
-      next: (data) => {
-        console.log('DATA BRUTE BACKEND:', data);
-        const raw = Array.isArray(data) ? data : [];
+    // On met admin=true et limit=1000 pour voir TOUT en mode admin
+    // Pour le public, tu mettras admin=false plus tard
+    const url = `${this.apiUrl}/api/all-reviews?admin=true&limit=1000`;
 
-        // 1. Dédoublonnage par ID
+    this.http.get<any>(url).subscribe({
+      next: (res) => {
+        console.log('DATA BRUTE BACKEND:', res);
+
+        // FIX PRINCIPAL : Le nouveau serveur renvoie { data: [...], total, ... }
+        // L'ancien renvoyait directement [...]
+        // On gère les 2 cas pour être sûr
+        let raw: any[] = [];
+        if (Array.isArray(res)) {
+          raw = res; // ancien format
+        } else if (res && Array.isArray(res.data)) {
+          raw = res.data; // nouveau format V3
+        }
+
+        // Dédoublonnage par ID pour éviter les doublons
         const map = new Map<string, any>();
         raw.forEach((item) => {
-          const key = item.id || item._id || item.docId;
-          if (key) {
-            if (!map.has(key)) map.set(key, item);
-          } else {
-            // Si pas d'id, on utilise le contenu comme clé
-            const fallbackKey = JSON.stringify(item);
-            if (!map.has(fallbackKey)) map.set(fallbackKey, item);
+          const key = item.id || item._id;
+          if (key && !map.has(key)) {
+            map.set(key, item);
           }
         });
 
         this.avisList = Array.from(map.values());
-        console.log(`Nettoyé: ${raw.length} -> ${this.avisList.length}`);
+        console.log(
+          `Avis reçus: ${raw.length} -> Après dédoublonnage: ${this.avisList.length}`,
+        );
         this.isLoading = false;
       },
       error: (err) => {
@@ -59,6 +72,7 @@ export class ListageAvisComponent implements OnInit {
     });
   }
 
+  // Filtre côté front par université
   get avisFiltres() {
     if (!this.filtreUniv || this.filtreUniv === '') {
       return this.avisList;
@@ -66,6 +80,7 @@ export class ListageAvisComponent implements OnInit {
     return this.avisList.filter((a) => a.universityId === this.filtreUniv);
   }
 
+  // Pour afficher les étoiles
   getStars(note: any) {
     let n = parseInt(note) || 0;
     if (n > 5) n = 5;
@@ -73,12 +88,26 @@ export class ListageAvisComponent implements OnInit {
     return Array(n).fill(0);
   }
 
+  // Trouve le nom de la fac à partir de son ID
   getNomUniv(id: string) {
     const uni = this.universites.find((u) => u.id === id);
     return uni ? uni.nom : id;
   }
 
+  // Optimise le *ngFor pour ne pas re-rendre tout
   trackById(index: number, item: any): string {
     return item.id || item._id || index.toString();
+  }
+
+  // NOUVEAU: Pour le futur dashboard - Dépublier
+  togglePublish(avis: any) {
+    this.http
+      .patch<any>(`${this.apiUrl}/api/reviews/${avis.id}/toggle`, {})
+      .subscribe({
+        next: (res) => {
+          avis.isPublished = res.isPublished;
+        },
+        error: (err) => console.error(err),
+      });
   }
 }

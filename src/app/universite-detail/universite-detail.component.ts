@@ -608,6 +608,94 @@ export class UniversiteDetailComponent {
       frais: '500$',
       ville: 'Kinshasa',
     },
+    {
+      adresse: '',
+      desc: '',
+      couverture:
+        'https://th.bing.com/th/id/OIP.Q3YvCK4UsLHcfGvoL11O2AHaHV?w=190&h=188&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+      logo: 'https://th.bing.com/th/id/OIP.Q3YvCK4UsLHcfGvoL11O2AHaHV?w=190&h=188&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+
+      id: 'ISAM',
+      nom: 'ISAM',
+      complet: 'Institut des Arts et Métiers',
+      facs: [
+        'Droit',
+        'Médecine',
+        'Informatique',
+        'intelligence artificielle',
+        'Mathématiques',
+        'Physique',
+        'polytechnique',
+        'Chimie',
+        'Biologie',
+        'Génie civil',
+        'Génie électrique',
+        'Génie mécanique',
+      ],
+      frais: '',
+      ville: 'Kinshasa',
+    },
+    {
+      adresse: '',
+      desc: '',
+      couverture:
+        'https://th.bing.com/th/id/OIP.Pe0rjy1cWm0zWOm8WYVhcwAAAA?w=137&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+      logo: 'https://th.bing.com/th/id/OIP.Pe0rjy1cWm0zWOm8WYVhcwAAAA?w=137&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+
+      id: 'ISSS/CR',
+      nom: 'ISSS/CR',
+      complet: 'Institut Supérieur de Sciences de la Santé de la Croix-Rouge',
+      facs: [
+        'Médecine',
+        'Mathématiques',
+        'Physique',
+        'polytechnique',
+        'Chimie',
+        'Biologie',
+      ],
+      frais: '',
+      ville: 'Kinshasa',
+    },
+    {
+      adresse: '',
+      desc: '',
+      couverture:
+        'https://th.bing.com/th/id/OIP.5i20xFewAtqe0cVuo752DQAAAA?w=138&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+      logo: 'https://th.bing.com/th/id/OIP.5i20xFewAtqe0cVuo752DQAAAA?w=138&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+
+      id: 'ISP',
+      nom: 'ISP',
+      complet: 'Institut Supérieur de Pédagogique',
+      facs: [
+        'Mathématiques',
+        'Physique',
+        'polytechnique',
+        'Chimie',
+        'Biologie',
+      ],
+      frais: '',
+      ville: 'Kinshasa',
+    },
+    {
+      adresse: '',
+      desc: '',
+      couverture:
+        'https://th.bing.com/th/id/OIP.hHpXwUEYD-l54n3OTwTtZAHaHa?w=175&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+      logo: 'https://th.bing.com/th/id/OIP.hHpXwUEYD-l54n3OTwTtZAHaHa?w=175&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
+
+      id: 'ISS',
+      nom: 'ISS',
+      complet: 'Institut Supérieur de Stastistique',
+      facs: [
+        'Mathématiques',
+        'Physique',
+        'polytechnique',
+        'Chimie',
+        'Biologie',
+      ],
+      frais: '',
+      ville: 'Kinshasa',
+    },
   ];
   red!: null;
   off: boolean = false;

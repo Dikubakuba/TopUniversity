@@ -107,6 +107,11 @@ export class AvisComponent implements OnInit {
     } else {
       this.alerte = true;
       this.avisForm.markAllAsTouched();
+      // alert('Erreur');
     }
+  }
+  //
+  alertes() {
+    this.alerte = true;
   }
 }

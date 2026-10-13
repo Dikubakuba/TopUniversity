@@ -12,8 +12,8 @@ import { ConfigComponent } from './config/config.component';
 import { ListageAvisComponent } from './listage-avis/listage-avis.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
-  { path: 'acceuil', component: AcceuilComponent },
+  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+  { path: 'accueil', component: AcceuilComponent },
   { path: 'page', component: PageComponent },
   { path: 'universite/:id', component: UniversiteDetailComponent },
   { path: 'classement', component: ClassementComponent },
