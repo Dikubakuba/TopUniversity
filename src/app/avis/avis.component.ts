@@ -11,6 +11,7 @@ export class AvisComponent implements OnInit {
   universites: any[] = [];
   alerte: boolean = false;
   isLoading: boolean = false;
+  SuccesAlerte: string = 'Votre avis a été envoyé avec succès!';
 
   private apiUrl = 'https://backend-unirank-universite.onrender.com';
 
@@ -86,7 +87,7 @@ export class AvisComponent implements OnInit {
       this.http.post(`${this.apiUrl}/api/reviews`, dataToSend).subscribe({
         next: (res: any) => {
           this.isLoading = false;
-          alert('Votre avis a été envoyé avec succès!');
+          alert(this.SuccesAlerte);
           const currentUniv = this.avisForm.get('universityId')?.value;
           this.avisForm.reset({
             universityId: currentUniv,

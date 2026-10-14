@@ -1578,3 +1578,75 @@ textarea:focus {
   color: red;
   font-size: 11px;
 }
+/*  */
+
+.top {
+  /* background: transparent; */
+  padding: 36px 24px 26px;
+  /* background: rgba(255, 255, 255, 0.9); */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(14px);
+  align-items: center;
+  flex-direction: column;
+}
+.hei {
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  backdrop-filter: blur(14px);
+  box-shadow: 1px 5px 5px 1px gray;
+  border-radius: 10px;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: transparent;
+}
+.circle-ok {
+  width: 80px;
+  height: 80px;
+  background: #1faa59;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top h1 {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #8a7a6a;
+  font-weight: 600;
+}
+.top .nom {
+  font-family: "Great Vibes", cursive;
+  font-size: 38px;
+  margin-top: 8px;
+  color: white;
+  text-align: center;
+}
+.confirm {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 14px;
+  color: #1a7a4a;
+  margin-top: 4px;
+  font-weight: 600;
+}
+.center {
+  text-align: center;
+}
+.bbttnn {
+  display: flex;
+  background: rgba(0, 76, 255, 0.07);
+  width: 80px;
+  justify-content: center;
+  align-items: center;
+}

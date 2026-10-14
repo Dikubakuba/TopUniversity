@@ -1,0 +1,99 @@
+[
+  {
+    "id": "UNIKIN",
+    "frais": "500$ - 950$ / an",
+    "facs": [
+      "Droit",
+      "Médecine",
+      "Pharmacie",
+      "Polytechnique",
+      "Sciences",
+      "Economie",
+      "Lettres",
+      "Psychologie",
+      "Sciences Sociales",
+      "Agronomie"
+    ]
+  },
+  {
+    "id": "ISTA",
+    "frais": "400$ - 650$ / an",
+    "facs": [
+      "Mécanique Générale",
+      "Mécanique Auto",
+      "Aviation",
+      "Electricité Industrielle",
+      "Electronique",
+      "Informatique Industrielle",
+      "Batiment",
+      "Travaux Publics",
+      "Géomètre",
+      "Météorologie",
+      "Environnement"
+    ]
+  },
+  {
+    "id": "ISC",
+    "frais": "450$ - 700$ / an",
+    "facs": [
+      "Comptabilité",
+      "Fiscalité",
+      "Marketing",
+      "Commerce International",
+      "Informatique de Gestion",
+      "Secrétariat",
+      "Douane"
+    ]
+  },
+  {
+    "id": "ISS",
+    "frais": "400$ - 600$ / an",
+    "facs": ["Statistique", "Informatique", "Démographie", "Actuariat"]
+  },
+  {
+    "id": "UPN",
+    "frais": "350$ - 600$ / an",
+    "facs": ["Pédagogie", "Lettres", "Sciences", "Psychologie"]
+  },
+  {
+    "id": "UPC",
+    "frais": "600$ - 1200$ / an",
+    "facs": ["Théologie", "Droit", "Médecine", "Economie", "Informatique"]
+  },
+  {
+    "id": "UCC",
+    "frais": "800$ - 1500$ / an",
+    "facs": [
+      "Théologie",
+      "Philosophie",
+      "Droit Canonique",
+      "Communication Sociale"
+    ]
+  },
+  {
+    "id": "ISP",
+    "frais": "300$ - 550$ / an",
+    "facs": [
+      "Math-Info",
+      "Biologie-Chimie",
+      "Français",
+      "Anglais",
+      "Histoire-Géo"
+    ]
+  },
+  {
+    "id": "INBTP",
+    "frais": "500$ - 800$ / an",
+    "facs": ["Bâtiment", "Travaux Publics", "Topographie", "Géotechnique"]
+  },
+  {
+    "id": "ULK",
+    "frais": "700$ - 1300$ / an",
+    "facs": ["Droit", "Médecine", "Economie", "Informatique"]
+  },
+  {
+    "id": "",
+    "frais": "700$ - 1300$ / an",
+    "facs": ["Coutur", "Médecine", "Economie", "Informatique"]
+  }
+]

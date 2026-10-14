@@ -1,9 +1,3 @@
-<!-- <div *ngIf="universite" style="padding: 20px">
-  <ul>
-    <li *ngFor="let fac of universite.facs">{{ fac }}</li>
-  </ul>
-</div> -->
-<!--  -->
 <style>
   * {
     margin: 0;
@@ -12,24 +6,18 @@
     font-family:
       -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
-  body {
-    background: #f5f5f7;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-  }
   .phone {
     width: 100%;
-    /* max-width: 400px; */
     background: #fff;
     min-height: 100vh;
     position: relative;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+    padding: 20px;
   }
   .header-img {
     height: 200px;
     width: 100%;
-    /* object-fit: cover; */
+    object-fit: cover;
     display: block;
     border-radius: 0 0 20px 20px;
   }
@@ -43,14 +31,13 @@
     padding: 14px 16px;
     z-index: 2;
   }
-  .top-bar span {
-    width: 36px;
-    height: 36px;
+  .top-bar button {
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 0;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
   }
   .logo-wrap {
     width: 86px;
@@ -70,9 +57,6 @@
     height: 68px;
     object-fit: contain;
   }
-  /* .content {
-  padding: 0 18px 100px;
-} */
   h1 {
     font-size: 32px;
     text-align: center;
@@ -94,13 +78,11 @@
   .stars {
     color: #f7b500;
   }
-  .rating small {
-    color: #777;
-  }
   .tabs {
     display: flex;
     gap: 8px;
     margin-bottom: 18px;
+    margin-top: 15px;
   }
   .tab {
     flex: 1;
@@ -111,6 +93,7 @@
     font-weight: 600;
     background: #f5f5f7;
     color: #333;
+    cursor: pointer;
   }
   .tab.active {
     background: #0a56c0;
@@ -124,7 +107,7 @@
   p.desc {
     font-size: 13px;
     color: #444;
-    line-height: 1.5;
+    line-height: 1.6;
   }
   .chips {
     display: flex;
@@ -142,23 +125,16 @@
     gap: 5px;
     font-weight: 500;
   }
-  .chip::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: #0a56c0;
-    border-radius: 50%;
-    display: inline-block;
-  }
   .fee-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #f0f0f0;
     font-size: 13px;
   }
   .fee-row span:last-child {
     font-weight: 700;
+    color: #0a56c0;
   }
   .strong-list {
     list-style: none;
@@ -208,6 +184,7 @@
     gap: 8px;
     cursor: pointer;
     border: 1.5px solid #0a56c0;
+    text-decoration: none;
   }
   .btn-outline {
     background: #fff;
@@ -217,109 +194,186 @@
     background: #0a56c0;
     color: #fff;
   }
+  .loader {
+    text-align: center;
+    padding: 40px;
+    color: #0a56c0;
+  }
+  .info-card {
+    background: #f5f5f7;
+    border-radius: 14px;
+    padding: 12px;
+    margin: 10px 0;
+  }
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 13px;
+  }
+  .info-row:last-child {
+    border-bottom: 0;
+  }
 </style>
-<div class="phone" *ngIf="universite" style="padding: 20px">
+
+<div *ngIf="isLoading" class="loader">
+  Chargement complet de {{ id }} depuis Wikipedia...
+</div>
+
+<div class="phone" *ngIf="!isLoading && universite">
   <div class="top-bar">
-    <button (click)="retour()">Retour à la page principale</button>
+    <button (click)="retour()">← Retour</button>
     <span>♡</span>
   </div>
+
   <img
     class="header-img"
-    [src]="universite.couverture"
-    alt="{{ universite.nom }}"
+    [src]="universite.couverture || universite.logo"
+    [alt]="universite.nom"
   />
+
   <div class="logo-wrap">
     <img [src]="universite.logo" alt="logo" />
   </div>
+
   <div class="content">
     <h1>{{ universite.nom }}</h1>
-    <div class="subtitle">Université de Kinshasa</div>
+    <div class="subtitle">{{ universite.complet }}</div>
+
     <div class="rating">
       <b>4.3</b>
       <div class="stars">★★★★☆</div>
-      <small>(128 avis)</small>
+      <small>({{ universite.ville }})</small>
     </div>
+
     <div class="tabs">
       <button class="tab active">Aperçu</button>
-      <style>
-        .tab.on {
-          background: red;
-        }
-        .tab.off {
-          background: blue;
-        }
-      </style>
-      <button
-        class="tab"
-        (click)="filliere()"
-        [class.on]="red"
-        [class.off]="off"
+      <button class="tab">Filières ({{ universite.facs?.length || 0 }})</button>
+      <button class="tab">Frais</button>
+      <button class="tab">Infos</button>
+    </div>
+
+    <h3>📊 Informations générales</h3>
+    <div class="info-card">
+      <div class="info-row">
+        <span>Fondation</span
+        ><b>{{ universite.fondation || "Non renseigné" }}</b>
+      </div>
+      <div class="info-row">
+        <span>Étudiants</span
+        ><b>{{ universite.effectif || "Non renseigné" }}</b>
+      </div>
+      <div class="info-row">
+        <span>Recteur</span><b>{{ universite.recteur || "Non renseigné" }}</b>
+      </div>
+      <div class="info-row">
+        <span>Ville</span><b>{{ universite.ville }}</b>
+      </div>
+      <div
+        *ngFor="let item of universite.infos | keyvalue | slice: 0 : 6"
+        class="info-row"
       >
-        Filières</button
-      ><button class="tab">Frais</button><button class="tab">Avis</button>
+        <span>{{ item.key }}</span
+        ><b
+          style="
+            max-width: 60%;
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          "
+          >{{ item.value }}</b
+        >
+      </div>
     </div>
+
     <h3>À propos</h3>
-    <p class="desc">
-      La plus grande université publique de RDC.<br />Elle offre une large gamme
-      de formations dans plusieurs domaines.
-    </p>
-    <h3>Filières populaires</h3>
-    <div class="chips">
-      <div class="chip">Informatique</div>
-      <div class="chip">Droit</div>
-      <div class="chip">Médecine</div>
-      <div class="chip">Gestion</div>
-      <div class="chip">É conomie</div>
-      <div class="chip">Plus...</div>
+    <p class="desc">{{ universite.desc }}</p>
+
+    <div *ngIf="universite.histoire">
+      <h3>🏛 Histoire</h3>
+      <p class="desc">{{ universite.histoire }}</p>
     </div>
-    <h3>Frais académiques <small style="color: #777">(approx.)</small></h3>
+
+    <h3>Filières / Facultés récupérées ({{ universite.facs?.length || 0 }})</h3>
+    <div class="chips" *ngIf="universite.facs?.length; else noFacs">
+      <div class="chip" *ngFor="let fac of universite.facs">{{ fac }}</div>
+    </div>
+    <ng-template #noFacs>
+      <p
+        style="
+          font-size: 12px;
+          color: #888;
+          background: #fafafa;
+          padding: 10px;
+          border-radius: 10px;
+        "
+      >
+        Aucune filière structurée trouvée sur Wikipedia pour cette page. Le
+        contenu est peut-être dans le texte.
+      </p>
+    </ng-template>
+
+    <h3>Frais académiques</h3>
     <div class="fees">
-      <div class="fee-row">
-        <span>{{ universite.facs[1] }}</span
-        ><span>950 $ / an</span>
-        <span>{{ universite.ville }}</span>
-      </div>
-      <div class="fee-row">
-        <span>{{ universite.facs[2] }}</span
-        ><span>{{ universite.frais }}/ an</span>
-        <span>{{ universite.ville }}</span>
-      </div>
-      <div class="fee-row">
-        <span>{{ universite.facs[1] }}</span
-        ><span>{{ universite.frais }}/ an</span>
-        <span>{{ universite.ville }}</span>
-      </div>
-      <div class="fee-row">
-        <span>{{ universite.facs[3] }}</span
-        ><span>{{ universite.frais }}/ an</span>
-        <span>{{ universite.ville }}</span>
-      </div>
-      <div class="fee-row">
-        <span>{{ universite.facs[4] }}</span
-        ><span>{{ universite.frais }}/ an</span>
-        <span>{{ universite.ville }}</span>
-      </div>
-      <div class="fee-row">
-        <span>{{ universite.facs[5] }}</span
-        ><span>{{ universite.frais }}/ an</span>
-        <span>{{ universite.ville }}</span>
-      </div>
-      <div class="fee-row">
-        <span>{{ universite.facs[6] }}</span
-        ><span>{{ universite.frais }}/ an</span>
-        <span>{{ universite.ville }}</span>
-      </div>
+      <ng-container *ngIf="universite.facs?.length; else fraisGeneral">
+        <div class="fee-row" *ngFor="let fac of universite.facs | slice: 0 : 8">
+          <span>{{ fac }}</span
+          ><span>{{ universite.frais }}</span>
+        </div>
+      </ng-container>
+      <ng-template #fraisGeneral>
+        <div class="fee-row">
+          <span>Frais général {{ universite.nom }}</span>
+          <span>{{ universite.frais || "350$ - 950$ / an" }}</span>
+        </div>
+      </ng-template>
     </div>
+    <p style="font-size: 11px; color: #999; margin-top: 6px">
+      Frais issus de ta base locale. Les montants exacts varient selon l'année
+      et sont sur le site officiel.
+    </p>
+
     <h3>Points forts</h3>
     <ul class="strong-list">
-      <li><i>✓</i> Meilleure en sciences et technologies</li>
-      <li><i>✓</i> Large choix de filières</li>
-      <li><i>✓</i> Réseau d'anciens très actif</li>
+      <li><i>✓</i> Données vérifiées depuis Wikipedia</li>
+      <li>
+        <i>✓</i> {{ universite.facs?.length || 0 }} filières listées depuis
+        Wikipedia
+      </li>
+      <li><i>✓</i> Localisation : {{ universite.ville }}</li>
+      <li *ngIf="universite.fondation">
+        <i>✓</i> Fondée en {{ universite.fondation }}
+      </li>
     </ul>
+
+    <div
+      *ngIf="wikiData"
+      style="margin-top: 20px; font-size: 11px; color: #888; text-align: center"
+    >
+      Source:
+      <a
+        [href]="universite.wikiUrl || wikiData.content_urls?.desktop?.page"
+        target="_blank"
+        >Wikipedia - {{ universite.nom }}</a
+      >
+    </div>
   </div>
+
   <div class="bottom-bar">
-    <button class="btn btn-outline">🌐 Site web</button
-    ><button class="btn btn-fill">🗺 Itinéraire</button>
+    <a [href]="universite.wikiUrl" target="_blank" class="btn btn-outline"
+      >🌐 Wikipedia</a
+    >
+    <button class="btn btn-fill">🗺 {{ universite.ville }}</button>
   </div>
   <br /><br /><br /><br /><br />
+</div>
+
+<div
+  *ngIf="!isLoading && !universite"
+  style="padding: 40px; text-align: center"
+>
+  Université {{ id }} introuvable<br /><br />
+  <button (click)="retour()">Retour</button>
 </div>
