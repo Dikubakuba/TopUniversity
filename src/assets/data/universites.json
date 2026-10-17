@@ -12,9 +12,31 @@
       "Lettres",
       "Psychologie",
       "Sciences Sociales",
-      "Agronomie"
+      "Agronomie",
+      "Informatique"
     ]
   },
+  {
+    "id": "I.S.I.P.A",
+    "frais": "640$ - 950$ / an",
+    "facs": [
+      "Ingenierie En Securite Informatique",
+      "Intelligence Artificiel {IA} ",
+      "Douane",
+      "Communication Numerique",
+      "Reseaux Et Techniques de Maintenance",
+      "Fiscalité",
+      "Comptabilité",
+      "Ingenierie Des Bases De Données Et Big Data",
+      "Ingenierie En Bio-Informatique ",
+      "Ingenierie En Conception Des Systemes D'Information Et Des Logiciels",
+      "Ingenierie En Telecommunication Et Administration Reseaux",
+      "Ingenierie En Communication Numerique",
+      "Douane Et Commerce International",
+      "Comptabilité Et Audit"
+    ]
+  },
+
   {
     "id": "ISTA",
     "frais": "400$ - 650$ / an",
@@ -95,5 +117,156 @@
     "id": "",
     "frais": "700$ - 1300$ / an",
     "facs": ["Coutur", "Médecine", "Economie", "Informatique"]
+  },
+  {
+    "id": "UPC",
+    "frais": "600$ - 1200$ / an",
+    "facs": ["Théologie", "Droit", "Médecine", "Economie", "Informatique"]
+  },
+  {
+    "id": "UCC",
+    "frais": "800$ - 1500$ / an",
+    "facs": [
+      "Théologie",
+      "Philosophie",
+      "Droit Canonique",
+      "Communication Sociale"
+    ]
+  },
+  {
+    "id": "UPN",
+    "frais": "350$ - 600$ / an",
+    "facs": ["Pédagogie", "Lettres", "Sciences", "Psychologie"]
+  },
+  {
+    "id": "ULK",
+    "frais": "700$ - 1300$ / an",
+    "facs": ["Droit", "Médecine", "Economie", "Informatique"]
+  },
+  {
+    "id": "ISTA",
+    "frais": "400$ - 650$ / an",
+    "facs": [
+      "Mécanique Générale",
+      "Mécanique Auto",
+      "Aviation",
+      "Electricité Industrielle",
+      "Electronique",
+      "Informatique Industrielle",
+      "Batiment",
+      "Travaux Publics",
+      "Géomètre",
+      "Météorologie",
+      "Environnement"
+    ]
+  },
+  {
+    "id": "ISC",
+    "frais": "",
+    "facs": [
+      "Comptabilité",
+      "Fiscalité",
+      "Marketing",
+      "Commerce International",
+      "Informatique de Gestion",
+      "Secrétariat",
+      "Douane"
+    ]
+  },
+  {
+    "id": "IFASIC",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "ISAU",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "ABA",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "ULC",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "USK",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "UNISIC",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "UCKIN",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "USAKIN",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "BELCAMPUS",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "LAU",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "UFA",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "UPDC",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "UCEN",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "AUK",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "CEPROMAD",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+
+  {
+    "id": "ISAM",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "ISSS/C",
+    "frais": "",
+    "facs": ["", "", "", "Physique", ""]
+  },
+  {
+    "id": "ISP",
+    "frais": "",
+    "facs": ["", "", "", "", ""]
+  },
+  {
+    "id": "ISS",
+    "frais": "",
+    "facs": ["Informatique", "", "", "Physique", ""]
   }
 ]

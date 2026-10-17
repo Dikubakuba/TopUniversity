@@ -1,21 +1,96 @@
-<h2>🏆 Top Universités - Kinshasa</h2>
+<div class="unirank-page">
+  <div class="title-row">
+    <div>
+      <h1>Classement des Universités — RDC</h1>
+      <p>Comparez et explorez les meilleures universités de la République Démocratique du Congo. Classement basé sur l'académique, la recherche, l'employabilité et les infrastructures.</p>
+      <small>Mise à jour Octobre 2024 • Méthodologie →</small>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>120 Universités</strong><span>Classées au niveau national</span></div>
+      <div class="stat"><strong>Kinshasa en tête</strong><span>18 universités classées</span></div>
+      <div class="stat"><strong>Édition 2024</strong><span>Dernières données</span></div>
+    </div>
+  </div>
 
-<!-- SOLUTION : On donne un petit nom #monSelect au select -->
-<!-- Comme ça Angular est sûr que .value existe -->
-<select #monSelect (change)="onSpecialiteChange(monSelect.value)">
-  <option value="informatique">Informatique</option>
-  <option value="droit">Droit</option>
-  <option value="medecine">Médecine</option>
-  <option value="gestion">Gestion</option>
-</select>
+  <div class="search-box">
+    <input (input)="onSearch($event)" placeholder="Rechercher université, ville, ou filière...">
+  </div>
 
-<div *ngIf="isLoading">Chargement du classement...</div>
+  <div class="filters">
+    <select (change)="onCityChange($event)">
+      <option value="all">Ville - Toutes les villes</option>
+      <option value="Kinshasa">Kinshasa</option>
+      <option value="Lubumbashi">Lubumbashi</option>
+      <option value="Kisangani">Kisangani</option>
+      <option value="Bukavu">Bukavu</option>
+    </select>
 
-<ul>
-  <li *ngFor="let univ of classement; let i = index">
-    <span
-      ><strong>#{{ i + 1 }} {{ univ.nom }}</strong></span
-    >
-    <span>⭐ {{ univ.score }} ({{ univ.nombreAvis }} avis)</span>
-  </li>
-</ul>
+    <select (change)="onTypeChange($event)">
+      <option value="all">Type - Tous les types</option>
+      <option value="Public">Public</option>
+      <option value="Privé">Privé</option>
+    </select>
+
+    <select (change)="onScoreChange($event)">
+      <option value="all">Score - Tous les scores</option>
+      <option value="80">80+ seulement</option>
+      <option value="70">70+ seulement</option>
+    </select>
+
+    <button (click)="resetFilters()" class="reset-btn">Réinitialiser ✕</button>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th># Rang</th>
+          <th>Université</th>
+          <th>Localisation</th>
+          <th>Type</th>
+          <th>Score Global</th>
+          <th>Évolution</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of filtered">
+          <td><span class="rank" [class.first]="u.id===1">#{{u.id}}</span></td>
+          <td>
+            <div class="uni">
+              <div class="uni-logo" [style.background]="u.color">{{u.code}}</div>
+              <div>
+                <div class="uni-name">{{u.name}}</div>
+                <div class="uni-sub">{{u.nameFr}}</div>
+              </div>
+            </div>
+          </td>
+          <td>{{u.city}}</td>
+          <td><span class="badge" [class.public]="u.type==='Public'" [class.private]="u.type==='Privé'">{{u.type}}</span></td>
+          <td>
+            <b>{{u.score}}/100</b>
+            <span class="bar">
+              <span class="fill" [style.width.%]="u.score" [style.background]="u.change.indexOf('-')>-1 ? '#ef4444' : '#14b8a6'"></span>
+            </span>
+          </td>
+          <td>
+            <span [class.green]="u.change.indexOf('+')>-1" [class.red]="u.change.indexOf('-')>-1">
+              {{u.change==='0' ? 'Stable' : u.change}}
+            </span>
+          </td>
+          <td><button class="view-btn">Voir →</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Message si aucun résultat -->
+    <div *ngIf="filtered.length === 0" style="padding: 40px; text-align: center; color: #64748b;">
+      <p style="font-size: 32px;">🔍</p>
+      <p style="font-weight: 600; margin-top: 8px;">Aucune université trouvée</p>
+      <p style="font-size: 13px;">Essayez de modifier vos filtres ou votre recherche</p>
+      <button (click)="resetFilters()" style="margin-top: 16px; padding: 8px 16px; border-radius: 8px; border: 1px solid #e2e8f0; background: white; cursor: pointer;">Réinitialiser les filtres</button>
+    </div>
+
+    <div class="pagination">Affichage 1-{{filtered.length}} sur {{universities.length}} résultats</div>
+  </div>
+</div>

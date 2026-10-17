@@ -142,37 +142,37 @@
         <div class="bar-row">
           <div class="bar-label">5 <span>★</span></div>
           <div class="bar-track">
-            <div class="bar-fill" style="width: 60%"></div>
+            <div class="bar-fill" style="width: 90%"></div>
           </div>
-          <div class="bar-pct">60%</div>
+          <div class="bar-pct">90%</div>
         </div>
         <div class="bar-row">
           <div class="bar-label">4 <span>★</span></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 65%"></div>
+          </div>
+          <div class="bar-pct">65%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">3 <span>★</span></div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: 40%"></div>
+          </div>
+          <div class="bar-pct">40%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">2 <span>★</span></div>
           <div class="bar-track">
             <div class="bar-fill" style="width: 25%"></div>
           </div>
           <div class="bar-pct">25%</div>
         </div>
         <div class="bar-row">
-          <div class="bar-label">3 <span>★</span></div>
+          <div class="bar-label">1 <span>★</span></div>
           <div class="bar-track">
             <div class="bar-fill" style="width: 10%"></div>
           </div>
           <div class="bar-pct">10%</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">2 <span>★</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width: 3%"></div>
-          </div>
-          <div class="bar-pct">3%</div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label">1 <span>★</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width: 2%"></div>
-          </div>
-          <div class="bar-pct">2%</div>
         </div>
       </div>
 
@@ -193,44 +193,40 @@
       <!--  -->
       <!-- ------------------------------------------- -->
       <!-- Carte 1 -->
-      <div class="review-card" *ngFor="let desc of personnage">
-        <div class="review-top">
-          <img (click)="profil()" class="avatar" [src]="desc.photo" />
-          <div style="flex: 1">
-            <div class="name">
-              {{ desc.nom }} {{ desc.postNom }} {{ desc.poit }}
-            </div>
-            <div class="role">
-              {{ desc.info }} / {{ desc.university }}
-              <!-- <img [src]="logoIsau" width="15" alt="" srcset="" /> -->
-            </div>
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                margin-top: 6px;
-              "
-            >
-              <div class="review-stars">
-                <span class="s f">{{ desc.etoile }}</span
-                ><span class="s f">{{ desc.etoile }}</span
-                ><span class="s f">{{ desc.etoile }}</span
-                ><span class="s f">{{ desc.etoile }}</span
-                ><span class="s">{{ desc.etoile }}</span>
-              </div>
-              <div class="date">{{ desc.tepms }}</div>
-            </div>
-          </div>
-          <div class="menu" (click)="option()">⋮</div>
+<!-- AVIS -->
+<!-- <h1 class="avis">Avis des étudiants</h1> -->
+<hr class="hr" />
+
+<div *ngIf="isLoadingAvis" style="text-align:center; padding:20px;">
+  Chargement des avis...
+</div>
+<br />
+<div *ngIf="!isLoadingAvis && commentairesAffiches.length === 0" style="text-align:center; padding:20px; color:#888;">
+  Aucun avis pour le moment pour {{ universityIdPourAvis }}.
+</div>
+
+<!-- Les 3 vrais commentaires de ta base -->
+<!-- <div class="review-card" *ngFor="let desc of commentairesAffiches">
+  <div class="review-top">
+    <img class="avatar" [src]="desc.photo || 'https://randomuser.me/api/portraits/men/32.jpg'" />
+    <div style="flex: 1">
+      <div class="name">{{ desc.nom || desc.name }}</div>
+      <div class="role">{{ desc.info || desc.filiere }} / {{ desc.university || desc.universityId }}</div>
+      <div style="display:flex; justify-content:space-between; margin-top:6px;">
+        <div class="review-stars">
+          <span class="s f">★</span><span class="s f">★</span><span class="s f">★</span><span class="s f">★</span><span class="s">★</span>
         </div>
-        <div class="review-text">
-          l'avis de {{ desc.nom }} A propos de son Université 🏷️
-          <details>
-            <summary style="color: blue">Voir Plus d'informations</summary>
-            <p>{{ desc.commentaire }}</p>
-          </details>
-        </div>
+        <div class="date">{{ desc.tepms || desc.createdAt | date:'short' }}</div>
       </div>
+    </div>
+  </div>
+  <div class="review-text">
+    <details>
+      <summary style="color:blue; cursor:pointer;">Voir l'avis de {{ desc.nom || desc.name }}</summary>
+      <p style="margin-top:8px;">{{ desc.commentaire || desc.comment || desc.message }}</p>
+    </details>
+  </div>
+</div> -->
       <div
         routerLink="/listage-avis"
         style="
