@@ -1,0 +1,76 @@
+<div class="admin-container">
+  <!-- LOGIN -->
+  <div *ngIf="!isLogged" class="login-box">
+    <h2>🔐 Admin UniRank</h2>
+    <form (ngSubmit)="login()">
+      <input
+        type="password"
+        [(ngModel)]="secretInput"
+        name="secret"
+        placeholder="Code secret admin"
+        required
+      />
+      <button type="submit" [disabled]="loading || !secretInput">
+        {{ loading ? "Vérification..." : "Se connecter" }}
+      </button>
+    </form>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div *ngIf="isLogged">
+    <header>
+      <h1>Dashboard Admin</h1>
+      <button class="logout" (click)="logout()">Déconnexion</button>
+    </header>
+
+    <div class="stats">
+      <div class="card">Total<br /><strong>{{ stats.total }}</strong></div>
+      <div class="card green">Publiés<br /><strong>{{ stats.publies }}</strong></div>
+      <div class="card red">Masqués<br /><strong>{{ stats.masques }}</strong></div>
+    </div>
+
+    <input
+      class="search"
+      type="text"
+      [(ngModel)]="search"
+      name="search"
+      (ngModelChange)="onSearch()"
+      placeholder="Rechercher nom, commentaire, université..."
+    />
+
+    <div *ngIf="filtered.length === 0" class="empty">Aucun avis trouvé.</div>
+
+    <div class="table-wrap">
+      <div
+        class="review-card"
+        *ngFor="let r of filtered; trackBy: trackById"
+        [class.hidden]="r.isPublished === false"
+      >
+        <img
+          *ngIf="r.imageUrl"
+          [src]="r.imageUrl"
+          class="thumb"
+          alt="avis"
+          loading="lazy"
+          (error)="r.imageUrl = null"
+        />
+        <div class="content">
+          <div class="top-line">
+            <strong>{{ r.nom }}</strong>
+            <span>{{ r.universityId }}</span>
+            <span>⭐ {{ r.noteGenerale || r.rating }}/5</span>
+            <span class="badge" [class.ok]="r.isPublished !== false">
+              {{ r.isPublished !== false ? "Publié" : "Masqué" }}
+            </span>
+          </div>
+          <p>{{ r.commentaire }}</p>
+          <small>{{ r.filiere }} | {{ r.niveau }} | {{ r.createdAt | date: "short" }}</small>
+        </div>
+        <div class="actions">
+          <button (click)="toggleReview(r)">{{ r.isPublished !== false ? "Masquer" : "Publier" }}</button>
+          <button class="del" (click)="deleteReview(r)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

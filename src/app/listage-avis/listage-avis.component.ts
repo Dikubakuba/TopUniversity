@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-listage-avis',
@@ -13,11 +13,6 @@ export class ListageAvisComponent implements OnInit {
   isLoading = true;
 
   private apiUrl = 'https://backend-unirank-universite.onrender.com';
-
-  // --- SECRET ADMIN : OBLIGATOIRE POUR QUE TES BOUTONS MARCHENT ---
-  private adminHeaders = new HttpHeaders({
-    'x-admin-secret': 'unirank_super_secret_2026_change_moi',
-  });
 
   constructor(private http: HttpClient) {}
 
@@ -37,10 +32,10 @@ export class ListageAvisComponent implements OnInit {
 
   loadAvis() {
     this.isLoading = true;
-    const url = `${this.apiUrl}/api/all-reviews?admin=true&limit=1000`;
+    // Route publique, plus besoin de ?admin=true
+    const url = `${this.apiUrl}/api/reviews`;
 
-    // On envoie le header secret ici
-    this.http.get<any>(url, { headers: this.adminHeaders }).subscribe({
+    this.http.get<any>(url).subscribe({
       next: (res) => {
         let raw: any[] = [];
         if (Array.isArray(res)) {
@@ -59,9 +54,20 @@ export class ListageAvisComponent implements OnInit {
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('ERREUR all-reviews:', err);
-        console.error('As-tu bien mis ADMIN_SECRET sur Render ?');
-        this.isLoading = false;
+        console.error('ERREUR reviews:', err);
+        // Fallback sur all-reviews
+        this.http
+          .get<any>(`${this.apiUrl}/api/all-reviews?limit=1000`)
+          .subscribe({
+            next: (res2) => {
+              const raw2 = Array.isArray(res2) ? res2 : res2.data || [];
+              this.avisList = raw2;
+              this.isLoading = false;
+            },
+            error: () => {
+              this.isLoading = false;
+            },
+          });
       },
     });
   }
@@ -91,46 +97,6 @@ export class ListageAvisComponent implements OnInit {
 
   trackById(index: number, item: any): string {
     return item.id || item._id || index.toString();
-  }
-
-  // Avec le header secret
-  togglePublish(avis: any) {
-    this.http
-      .patch<any>(
-        `${this.apiUrl}/api/reviews/${avis.id}/toggle`,
-        {},
-        { headers: this.adminHeaders },
-      )
-      .subscribe({
-        next: (res) => {
-          avis.isPublished = res.isPublished;
-        },
-        error: (err) => {
-          console.error(err);
-          alert(
-            'Erreur: As-tu bien mis ADMIN_SECRET sur Render et relancé le serveur ?',
-          );
-        },
-      });
-  }
-
-  // NOUVEAU : Supprimer un avis
-  deleteAvis(avis: any) {
-    if (!confirm(`Supprimer l'avis de ${avis.nom} ?`)) return;
-
-    this.http
-      .delete(`${this.apiUrl}/api/reviews/${avis.id}`, {
-        headers: this.adminHeaders,
-      })
-      .subscribe({
-        next: () => {
-          this.avisList = this.avisList.filter((a) => a.id !== avis.id);
-        },
-        error: (err) => {
-          console.error(err);
-          alert('Erreur suppression');
-        },
-      });
   }
 
   // Pour ouvrir l'image en grand

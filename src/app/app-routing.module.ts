@@ -10,6 +10,7 @@ import { EssaiComponent } from './essai/essai.component';
 import { AproposComponent } from './apropos/apropos.component';
 import { ConfigComponent } from './config/config.component';
 import { ListageAvisComponent } from './listage-avis/listage-avis.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'apropos', component: AproposComponent },
   { path: 'config', component: ConfigComponent },
   { path: 'listage-avis', component: ListageAvisComponent },
+  { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({

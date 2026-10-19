@@ -16,6 +16,7 @@ import { EssaiComponent } from './essai/essai.component';
 import { AproposComponent } from './apropos/apropos.component';
 import { ConfigComponent } from './config/config.component';
 import { ListageAvisComponent } from './listage-avis/listage-avis.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ListageAvisComponent } from './listage-avis/listage-avis.component';
     AproposComponent,
     ConfigComponent,
     ListageAvisComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

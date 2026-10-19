@@ -1,0 +1,128 @@
+.admin-container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: sans-serif;
+}
+.login-box {
+  max-width: 400px;
+  margin: 100px auto;
+  text-align: center;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stats {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+.card {
+  flex: 1;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  text-align: center;
+}
+.card.green {
+  background: #e6f9ec;
+}
+.card.red {
+  background: #fde8e8;
+}
+.search {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+.review-card {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.review-card.hidden {
+  opacity: 0.6;
+  background: #fafafa;
+}
+.thumb {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.content {
+  flex: 1;
+}
+.top-line {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.badge {
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: #ffdddd;
+  font-size: 12px;
+}
+.badge.ok {
+  background: #d4ffda;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #333;
+  color: #fff;
+  white-space: nowrap;
+}
+.actions button.del {
+  background: #e11d48;
+}
+.logout {
+  background: #eee;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
