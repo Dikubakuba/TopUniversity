@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-listage-avis',
@@ -14,6 +14,11 @@ export class ListageAvisComponent implements OnInit {
 
   private apiUrl = 'https://backend-unirank-universite.onrender.com';
 
+  // --- SECRET ADMIN : OBLIGATOIRE POUR QUE TES BOUTONS MARCHENT ---
+  private adminHeaders = new HttpHeaders({
+    'x-admin-secret': 'unirank_super_secret_2026_change_moi',
+  });
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -21,66 +26,56 @@ export class ListageAvisComponent implements OnInit {
     this.loadAvis();
   }
 
-  // Charge la liste des facs pour afficher leur nom
   loadUnivs() {
-    this.http.get<any[]>(`${this.apiUrl}/api/users`).subscribe({
-      next: (data) => (this.universites = data || []),
+    this.http.get<any>(`${this.apiUrl}/api/users`).subscribe({
+      next: (data) => {
+        this.universites = Array.isArray(data) ? data : data.data || [];
+      },
       error: (err) => console.error('Erreur univ:', err),
     });
   }
 
-  // Charge tous les avis - CORRIGÉ POUR LE NOUVEAU BACKEND
   loadAvis() {
     this.isLoading = true;
-    // On met admin=true et limit=1000 pour voir TOUT en mode admin
-    // Pour le public, tu mettras admin=false plus tard
     const url = `${this.apiUrl}/api/all-reviews?admin=true&limit=1000`;
 
-    this.http.get<any>(url).subscribe({
+    // On envoie le header secret ici
+    this.http.get<any>(url, { headers: this.adminHeaders }).subscribe({
       next: (res) => {
-        console.log('DATA BRUTE BACKEND:', res);
-
-        // FIX PRINCIPAL : Le nouveau serveur renvoie { data: [...], total, ... }
-        // L'ancien renvoyait directement [...]
-        // On gère les 2 cas pour être sûr
         let raw: any[] = [];
         if (Array.isArray(res)) {
-          raw = res; // ancien format
+          raw = res;
         } else if (res && Array.isArray(res.data)) {
-          raw = res.data; // nouveau format V3
+          raw = res.data;
         }
 
-        // Dédoublonnage par ID pour éviter les doublons
         const map = new Map<string, any>();
         raw.forEach((item) => {
           const key = item.id || item._id;
-          if (key && !map.has(key)) {
-            map.set(key, item);
-          }
+          if (key && !map.has(key)) map.set(key, item);
         });
 
         this.avisList = Array.from(map.values());
-        console.log(
-          `Avis reçus: ${raw.length} -> Après dédoublonnage: ${this.avisList.length}`,
-        );
         this.isLoading = false;
       },
       error: (err) => {
         console.error('ERREUR all-reviews:', err);
+        console.error('As-tu bien mis ADMIN_SECRET sur Render ?');
         this.isLoading = false;
       },
     });
   }
 
-  // Filtre côté front par université
   get avisFiltres() {
     if (!this.filtreUniv || this.filtreUniv === '') {
       return this.avisList;
     }
-    return this.avisList.filter((a) => a.universityId === this.filtreUniv);
+    return this.avisList.filter((a) => {
+      const id = a.universityId || a.univId;
+      return id === this.filtreUniv;
+    });
   }
 
-  // Pour afficher les étoiles
   getStars(note: any) {
     let n = parseInt(note) || 0;
     if (n > 5) n = 5;
@@ -88,26 +83,64 @@ export class ListageAvisComponent implements OnInit {
     return Array(n).fill(0);
   }
 
-  // Trouve le nom de la fac à partir de son ID
   getNomUniv(id: string) {
+    if (!id) return 'Université inconnue';
     const uni = this.universites.find((u) => u.id === id);
     return uni ? uni.nom : id;
   }
 
-  // Optimise le *ngFor pour ne pas re-rendre tout
   trackById(index: number, item: any): string {
     return item.id || item._id || index.toString();
   }
 
-  // NOUVEAU: Pour le futur dashboard - Dépublier
+  // Avec le header secret
   togglePublish(avis: any) {
     this.http
-      .patch<any>(`${this.apiUrl}/api/reviews/${avis.id}/toggle`, {})
+      .patch<any>(
+        `${this.apiUrl}/api/reviews/${avis.id}/toggle`,
+        {},
+        { headers: this.adminHeaders },
+      )
       .subscribe({
         next: (res) => {
           avis.isPublished = res.isPublished;
         },
-        error: (err) => console.error(err),
+        error: (err) => {
+          console.error(err);
+          alert(
+            'Erreur: As-tu bien mis ADMIN_SECRET sur Render et relancé le serveur ?',
+          );
+        },
       });
+  }
+
+  // NOUVEAU : Supprimer un avis
+  deleteAvis(avis: any) {
+    if (!confirm(`Supprimer l'avis de ${avis.nom} ?`)) return;
+
+    this.http
+      .delete(`${this.apiUrl}/api/reviews/${avis.id}`, {
+        headers: this.adminHeaders,
+      })
+      .subscribe({
+        next: () => {
+          this.avisList = this.avisList.filter((a) => a.id !== avis.id);
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Erreur suppression');
+        },
+      });
+  }
+
+  // Pour ouvrir l'image en grand
+  openImage(url: string) {
+    if (!url) return;
+    window.open(url, '_blank');
+  }
+
+  // Gère tous les noms possibles d'image
+  getImageUrl(avis: any): string | null {
+    return avis.imageUrl || avis.image || avis.photoUrl || null;
   }
 }

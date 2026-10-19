@@ -11,8 +11,9 @@ export class AvisComponent implements OnInit {
   universites: any[] = [];
   alerte: boolean = false;
   isLoading: boolean = false;
-  SuccesAlerte: string = 'Votre avis a été envoyé avec succès!';
-
+  selectedFile: File | null = null;
+  previewUrl: string | null = null;
+  fileError: string = '';
   private apiUrl = 'https://backend-unirank-universite.onrender.com';
 
   avisForm = new FormGroup({
@@ -34,24 +35,14 @@ export class AvisComponent implements OnInit {
   });
 
   constructor(private http: HttpClient) {}
-
   ngOnInit(): void {
     this.http.get(`${this.apiUrl}/api/users`).subscribe({
       next: (data: any) => {
         this.universites = Array.isArray(data) ? data : data.data || [];
-        if (
-          this.universites.length > 0 &&
-          !this.avisForm.get('universityId')?.value
-        ) {
-          this.avisForm.get('universityId')?.setValue(this.universites[0].id);
-        }
       },
-      error: (err) => {
-        console.error('ERREUR API /api/users:', err);
-      },
+      error: (err) => console.error(err),
     });
   }
-
   get nom() {
     return this.avisForm.get('nom');
   }
@@ -64,37 +55,46 @@ export class AvisComponent implements OnInit {
   get niveau() {
     return this.avisForm.get('niveau');
   }
-  get statut() {
-    return this.avisForm.get('statut');
-  }
   get commentaire() {
     return this.avisForm.get('commentaire');
   }
-  get radio() {
-    return this.avisForm.get('statut');
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    this.fileError = '';
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      this.fileError = 'Image trop grande (max 5 Mo)';
+      return;
+    }
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      this.fileError = 'Format non supporté';
+      return;
+    }
+    this.selectedFile = file;
+    const reader = new FileReader();
+    reader.onload = () => (this.previewUrl = reader.result as string);
+    reader.readAsDataURL(file);
+  }
+  removeImage() {
+    this.selectedFile = null;
+    this.previewUrl = null;
   }
 
   onsubmit() {
     if (this.avisForm.valid) {
       this.isLoading = true;
       this.alerte = false;
-
-      const dataToSend = {
-        ...this.avisForm.value,
-        noteGenerale: Number(this.avisForm.value.noteGenerale),
-        enseignement: Number(this.avisForm.value.enseignement),
-        enseignants: Number(this.avisForm.value.enseignants),
-        infrastructures: Number(this.avisForm.value.infrastructures),
-        vieEtudiante: Number(this.avisForm.value.vieEtudiante),
-      };
-
-      this.http.post(`${this.apiUrl}/api/reviews`, dataToSend).subscribe({
-        next: (res: any) => {
+      const formData = new FormData();
+      Object.entries(this.avisForm.value).forEach(([k, v]) =>
+        formData.append(k, v as string),
+      );
+      if (this.selectedFile) formData.append('image', this.selectedFile);
+      this.http.post(`${this.apiUrl}/api/reviews`, formData).subscribe({
+        next: () => {
           this.isLoading = false;
-          alert(this.SuccesAlerte);
-          const currentUniv = this.avisForm.get('universityId')?.value;
+          alert('Votre avis a été envoyé avec succès!');
           this.avisForm.reset({
-            universityId: currentUniv,
             statut: 'Etudiant actuel',
             noteGenerale: '5',
             enseignement: '5',
@@ -102,15 +102,11 @@ export class AvisComponent implements OnInit {
             infrastructures: '5',
             vieEtudiante: '5',
           });
+          this.removeImage();
         },
         error: (err) => {
           this.isLoading = false;
-          console.error('ERREUR POST /api/reviews:', err);
-          // Le V5 renvoie les détails d'erreur Zod
-          const msg = err.error?.details
-            ? JSON.stringify(err.error.details)
-            : err.error?.error || err.message;
-          alert('Erreur sauvegarde: ' + msg);
+          alert('Erreur: ' + (err.error?.error || err.message));
         },
       });
     } else {
@@ -118,7 +114,6 @@ export class AvisComponent implements OnInit {
       this.avisForm.markAllAsTouched();
     }
   }
-
   alertes() {
     this.alerte = true;
   }

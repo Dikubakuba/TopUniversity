@@ -52,7 +52,7 @@
         <a routerLink="/avis" class="publish-btn">Publier mon avis</a>
       </div>
 
-      <!-- CARDS - CORRIGÉ AVEC TRACKBY -->
+      <!-- CARDS -->
       <div
         *ngFor="let avis of avisFiltres; trackBy: trackById"
         class="review-card"
@@ -95,7 +95,7 @@
           </span>
         </div>
 
-        <!-- Commentaire - Affiche même si vide pour debug -->
+        <!-- Commentaire -->
         <div class="rc-comment">
           <i class="fa-solid fa-quote-left"></i>
           <p>
@@ -109,7 +109,26 @@
           </p>
         </div>
 
-        <!-- Notes détaillées avec fallback sur plusieurs noms possibles -->
+        <!-- IMAGE - NOUVEAU -->
+        <div *ngIf="getImageUrl(avis)" style="margin: 14px 0 0 0">
+          <img
+            [src]="getImageUrl(avis)"
+            (click)="openImage(getImageUrl(avis)!)"
+            style="
+              width: 100%;
+              border-radius: 12px;
+              max-height: 400px;
+              object-fit: cover;
+              cursor: zoom-in;
+              border: 1px solid #e5e7eb;
+              display: block;
+            "
+            alt="Photo de l'étudiant"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Notes -->
         <div class="rc-ratings">
           <div class="rate">
             <label>Enseignement</label
@@ -139,6 +158,67 @@
             ><span>{{ avis.vieEtudiante || avis.vie || 0 }}/5 ★</span>
           </div>
         </div>
+
+        <!-- ADMIN ACTIONS - NOUVEAU -->
+        <div
+          style="
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #f1f5f9;
+          "
+        >
+          <button
+            (click)="togglePublish(avis)"
+            [style.background]="avis.isPublished ? '#f59e0b' : '#10b981'"
+            style="
+              color: white;
+              border: none;
+              padding: 7px 12px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 12px;
+              font-weight: 600;
+            "
+          >
+            <i
+              class="fa-solid"
+              [ngClass]="avis.isPublished ? 'fa-eye-slash' : 'fa-eye'"
+            ></i>
+            {{ avis.isPublished ? "Dépublier" : "Publier" }}
+          </button>
+          <button
+            (click)="deleteAvis(avis)"
+            style="
+              background: #ef4444;
+              color: white;
+              border: none;
+              padding: 7px 12px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 12px;
+              font-weight: 600;
+            "
+          >
+            <i class="fa-solid fa-trash"></i> Supprimer
+          </button>
+          <span
+            style="
+              margin-left: auto;
+              font-size: 11px;
+              color: #9ca3af;
+              align-self: center;
+            "
+          >
+            <i
+              class="fa-solid fa-circle"
+              [style.color]="avis.isPublished ? '#10b981' : '#ef4444'"
+              style="font-size: 8px"
+            ></i>
+            {{ avis.isPublished ? "Public" : "Masqué" }}
+          </span>
+        </div>
       </div>
     </section>
   </div>
@@ -149,18 +229,17 @@
     <a
       routerLink="/"
       style="
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
         color: black;
         text-decoration: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         border-radius: 5px;
         padding: 10px;
         font-weight: bold;
       "
     >
-      <i class="fa-solid fa-arrow-left"></i>
-      Retour aux avis
+      <i class="fa-solid fa-arrow-left"></i> Retour aux avis
     </a>
   </div>
 </main>
