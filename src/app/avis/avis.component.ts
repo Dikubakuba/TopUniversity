@@ -17,7 +17,7 @@ export class AvisComponent implements OnInit {
 
   avisForm = new FormGroup({
     universityId: new FormControl('', [Validators.required]),
-    nom: new FormControl('', [Validators.required]),
+    nom: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     filiere: new FormControl('', [Validators.required]),
     niveau: new FormControl('', [Validators.required]),
@@ -27,7 +27,10 @@ export class AvisComponent implements OnInit {
     enseignants: new FormControl('5'),
     infrastructures: new FormControl('5'),
     vieEtudiante: new FormControl('5'),
-    commentaire: new FormControl('', [Validators.required]),
+    commentaire: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+    ]),
   });
 
   constructor(private http: HttpClient) {}
@@ -35,7 +38,7 @@ export class AvisComponent implements OnInit {
   ngOnInit(): void {
     this.http.get(`${this.apiUrl}/api/users`).subscribe({
       next: (data: any) => {
-        this.universites = data;
+        this.universites = Array.isArray(data) ? data : data.data || [];
         if (
           this.universites.length > 0 &&
           !this.avisForm.get('universityId')?.value
@@ -74,6 +77,7 @@ export class AvisComponent implements OnInit {
   onsubmit() {
     if (this.avisForm.valid) {
       this.isLoading = true;
+      this.alerte = false;
 
       const dataToSend = {
         ...this.avisForm.value,
@@ -102,16 +106,19 @@ export class AvisComponent implements OnInit {
         error: (err) => {
           this.isLoading = false;
           console.error('ERREUR POST /api/reviews:', err);
-          alert('Erreur sauvegarde: ' + (err.error?.error || err.message));
+          // Le V5 renvoie les détails d'erreur Zod
+          const msg = err.error?.details
+            ? JSON.stringify(err.error.details)
+            : err.error?.error || err.message;
+          alert('Erreur sauvegarde: ' + msg);
         },
       });
     } else {
       this.alerte = true;
       this.avisForm.markAllAsTouched();
-      // alert('Erreur');
     }
   }
-  //
+
   alertes() {
     this.alerte = true;
   }
