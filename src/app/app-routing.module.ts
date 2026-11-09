@@ -12,6 +12,7 @@ import { ConfigComponent } from './config/config.component';
 import { ListageAvisComponent } from './listage-avis/listage-avis.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { HommeComponent } from './homme/homme.component';
+import { OrientationComponent } from './orientation/orientation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homme', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'listage-avis', component: ListageAvisComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'homme', component: HommeComponent },
+  {path:'orientation',component:OrientationComponent}
 ];
 
 @NgModule({

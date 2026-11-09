@@ -430,7 +430,7 @@
   width: 220px;
   height: 100vh;
   background: #fff;
-  z-index: 99;
+  z-index: 999;
   padding: 20px;
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -690,9 +690,10 @@
 
 .fixed {
   position: fixed;
-  /* background: rgba(255, 255, 255, 0.8); */
-  background: rgba(0, 0, 0, 0.852);
-  color: white;
+  background: rgba(255, 255, 255, 0.99);
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.8);
+  /* background: rgba(0, 0, 0, 0.852); */
+  color: black;
   top: 0;
   left: 0;
   width: 100%;

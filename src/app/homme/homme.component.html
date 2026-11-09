@@ -3,15 +3,17 @@
     <div style="padding: 10px" class="topbar">
       <div class="logo">
         <!-- ICONE CHAPEAU SVG -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-          <path
-            d="M12 3L1 8l11 5 11-5-11-5zM5 10v6c0 1.5 3 3 7 3s7-1.5 7-3v-6l-7 3-7-3z"
-          />
-        </svg>
-        <span>UNI</span><span style="color: blue">RANK</span>
+        <img style="width: 30px; heigth: 30px" src="logoUniv.jpeg" alt="" />
+        <div><span>UNI</span><span style="color: blue">RANK</span></div>
       </div>
       <div class="menu" (click)="menu()">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+        <svg
+          
+          width="22"
+          height="22"
+          viewBox="0 0 17 17"
+          fill="black"
+        >
           <path d="M3 6h18v2H3V6zm3 5h12v2H6v-2zm-3 5h18v2H3v-2z" />
         </svg>
       </div>
@@ -27,7 +29,7 @@
             d="M12 3L1 8l11 5 11-5-11-5zM5 10v6c0 1.5 3 3 7 3s7-1.5 7-3v-6l-7 3-7-3z"
           />
         </svg>
-        <span>UNI</span><span style="color: blue">RANK</span>
+        <div><span>UNI</span><span style="color: blue">RANK</span></div>
       </div>
       <!-- <div class="menu" (click)="menu()">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
@@ -66,7 +68,7 @@
   <div class="content">
     <!-- GRID AVEC SVG - ÇA MARCHE TOUJOURS -->
     <div class="grid">
-      <div class="item" (click)="go('Test orientation')">
+      <div class="item" (click)="orientation()">
         <div class="icon c1">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="#0056d6">
             <path

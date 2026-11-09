@@ -18,6 +18,7 @@ import { ConfigComponent } from './config/config.component';
 import { ListageAvisComponent } from './listage-avis/listage-avis.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { HommeComponent } from './homme/homme.component';
+import { OrientationComponent } from './orientation/orientation.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HommeComponent } from './homme/homme.component';
     ListageAvisComponent,
     DashboardComponent,
     HommeComponent,
+    OrientationComponent,
   ],
   imports: [
     BrowserModule,

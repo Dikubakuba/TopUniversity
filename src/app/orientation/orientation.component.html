@@ -1,0 +1,732 @@
+<style>
+  :host {
+    --orientation-blue: #1749a5;
+    --orientation-blue-dark: #102b60;
+    --orientation-blue-light: #edf3ff;
+    --orientation-gold: #e8b83f;
+    --orientation-text: #142747;
+    --orientation-muted: #718096;
+    --orientation-border: #e7ecf4;
+    --orientation-white: #ffffff;
+  }
+
+  /* ==============================
+   STRUCTURE PRINCIPALE
+============================== */
+
+  .orientation-layout {
+    width: min(1160px, calc(100% - 48px));
+    margin: 45px auto;
+    display: grid;
+    grid-template-columns: 1fr 0.94fr;
+    gap: 55px;
+    align-items: center;
+  }
+
+  /* ==============================
+   SECTION INTRODUCTION
+============================== */
+
+  .intro {
+    position: relative;
+    min-height: 620px;
+    padding: 65px 0 35px;
+    margin-top: -70px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--orientation-blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+  }
+
+  .eyebrow span {
+    width: 28px;
+    height: 3px;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: var(--orientation-gold);
+  }
+
+  h1 {
+    position: relative;
+    z-index: 2;
+    max-width: 550px;
+    margin: 25px 0 20px;
+    color: var(--orientation-text);
+    font-size: clamp(42px, 5.2vw, 67px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -3px;
+  }
+
+  h1 em {
+    display: inline-block;
+    color: var(--orientation-blue);
+    font-style: normal;
+  }
+
+  .intro > p {
+    position: relative;
+    z-index: 2;
+    max-width: 440px;
+    color: var(--orientation-muted);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  /* ==============================
+   IMAGE ÉTUDIANTE
+============================== */
+
+  .student-wrap {
+    position: absolute;
+    z-index: 1;
+    right: -15px;
+    bottom: 0;
+    width: min(85%, 455px);
+    height: 410px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .student-wrap::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: 30px;
+    bottom: 15px;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #edf3ff, #dce7fb);
+  }
+
+  .student-wrap::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: 10px;
+    bottom: 20px;
+    width: 370px;
+    height: 370px;
+    border: 1px solid #dce6f7;
+    border-radius: 50%;
+  }
+
+  .student-wrap img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 15px 20px #18315b16);
+    animation: studentFloat 5s ease-in-out infinite;
+  }
+
+  @keyframes studentFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
+  }
+
+  /* ==============================
+   NOTE FLOTTANTE
+============================== */
+
+  .floating-note {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 100px;
+    padding: 17px 22px;
+    color: #77849a;
+    font-size: 12px;
+    line-height: 1.7;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #edf0f5;
+    border-left: 4px solid var(--orientation-gold);
+    border-radius: 5px 14px 14px 5px;
+    box-shadow: 0 12px 35px #14274712;
+    backdrop-filter: blur(10px);
+    animation: noteFloat 4s ease-in-out infinite;
+  }
+
+  .floating-note strong {
+    color: var(--orientation-text);
+    font-size: 14px;
+  }
+
+  @keyframes noteFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  /* ==============================
+   TEXTE DE CONFIANCE
+============================== */
+
+  .trust-line {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #8490a5;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .trust-line span {
+    color: var(--orientation-gold);
+    font-size: 17px;
+  }
+
+  /* ==============================
+   CARTE DU QUESTIONNAIRE
+============================== */
+
+  .quiz-card {
+    position: relative;
+    padding: 34px;
+    background: var(--orientation-white);
+    border: 1px solid var(--orientation-border);
+    border-radius: 24px;
+    box-shadow:
+      0 25px 65px #1427470c,
+      0 5px 15px #14274705;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .quiz-card:hover {
+    box-shadow:
+      0 30px 75px #14274713,
+      0 5px 15px #14274705;
+  }
+
+  /* EN-TÊTE */
+
+  .quiz-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  .quiz-head h2 {
+    margin: 10px 0 0;
+    color: var(--orientation-text);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.8px;
+  }
+
+  .quiz-head > strong {
+    display: flex;
+    align-items: baseline;
+    color: var(--orientation-blue);
+    font-size: 28px;
+    font-weight: 900;
+  }
+
+  .quiz-head small {
+    color: #a0aabd;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* PROGRESSION */
+
+  .progress {
+    height: 7px;
+    margin: 25px 0 30px;
+    overflow: hidden;
+    background: #edf1f7;
+    border-radius: 20px;
+  }
+
+  .progress span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--orientation-blue), #4783e8);
+    border-radius: inherit;
+    transition: width 0.5s ease;
+  }
+
+  /* QUESTIONS */
+
+  .question-count {
+    margin-bottom: 10px;
+    color: var(--orientation-blue);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.8px;
+  }
+
+  .quiz-card h3 {
+    margin: 8px 0 22px;
+    color: var(--orientation-text);
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+
+  /* ==============================
+   OPTIONS DE RÉPONSE
+============================== */
+
+  .answer {
+    position: relative;
+    width: 100%;
+    min-height: 57px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin: 11px 0;
+    padding: 15px 17px;
+    color: #526078;
+    text-align: left;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    background: #fff;
+    border: 1px solid #e7ebf2;
+    border-radius: 13px;
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .answer:hover {
+    background: #f8faff;
+    border-color: #b7c9ed;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px #1749a510;
+  }
+
+  .answer b {
+    margin-left: auto;
+    color: #a3afc1;
+    font-size: 17px;
+    transition: 0.25s;
+  }
+
+  .answer.selected {
+    color: var(--orientation-blue);
+    background: #f0f5ff;
+    border: 1.5px solid var(--orientation-blue);
+    box-shadow: 0 5px 15px #1749a512;
+  }
+
+  .answer.selected b {
+    color: var(--orientation-blue);
+    transform: translateX(3px);
+  }
+
+  /* RADIO */
+
+  .radio {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+    display: grid;
+    place-items: center;
+    border: 1.5px solid #c5cedc;
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+
+  .answer.selected .radio {
+    border: 5px solid var(--orientation-blue);
+    background: white;
+  }
+
+  /* ==============================
+   BOUTONS
+============================== */
+
+  .quiz-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 27px;
+  }
+
+  .back,
+  .primary {
+    min-height: 46px;
+    padding: 13px 21px;
+    border: none;
+    border-radius: 11px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+      background 0.25s,
+      transform 0.25s,
+      box-shadow 0.25s;
+  }
+
+  .back {
+    color: #69768d;
+    background: #f1f3f7;
+  }
+
+  .back:hover:not(:disabled) {
+    background: #e5eaf2;
+    transform: translateY(-2px);
+  }
+
+  .primary {
+    color: white;
+    background: linear-gradient(135deg, #1749a5, #102b60);
+    box-shadow: 0 7px 18px #1749a52b;
+  }
+
+  .primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #245fc6, #1749a5);
+    box-shadow: 0 10px 22px #1749a53a;
+    transform: translateY(-2px);
+  }
+
+  .primary span {
+    margin-left: 15px;
+    font-size: 16px;
+  }
+
+  button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* ==============================
+   CONFIDENTIALITÉ
+============================== */
+
+  .privacy {
+    margin: 24px 0 0;
+    padding-top: 17px;
+    color: #9aa5b5;
+    font-size: 10px;
+    line-height: 1.7;
+    text-align: center;
+    border-top: 1px solid #f0f2f6;
+  }
+
+  /* ==============================
+   RÉSULTAT
+============================== */
+
+  .result {
+    padding: 30px 5px;
+    text-align: center;
+    animation: resultAppear 0.5s ease;
+  }
+
+  @keyframes resultAppear {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .result-icon {
+    width: 65px;
+    height: 65px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 20px;
+    color: var(--orientation-blue);
+    background: var(--orientation-blue-light);
+    border: 1px solid #dce7fc;
+    border-radius: 50%;
+    font-size: 27px;
+  }
+
+  .result h3 {
+    margin: 12px 0;
+    color: var(--orientation-text);
+    font-size: 23px;
+    font-weight: 800;
+  }
+
+  .result p {
+    max-width: 360px;
+    margin: 0 auto;
+    color: var(--orientation-muted);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .full {
+    width: 100%;
+    margin-top: 22px;
+  }
+
+  /* ==============================
+   TABLETTES
+============================== */
+
+  @media (max-width: 1000px) {
+    .orientation-layout {
+      width: min(900px, calc(100% - 36px));
+      grid-template-columns: 1fr 0.95fr;
+      gap: 25px;
+    }
+
+    .intro {
+      min-height: 570px;
+    }
+
+    .student-wrap {
+      width: 90%;
+      height: 350px;
+    }
+
+    .student-wrap::before {
+      width: 280px;
+      height: 280px;
+    }
+
+    .student-wrap::after {
+      width: 310px;
+      height: 310px;
+    }
+
+    .quiz-card {
+      padding: 26px 23px;
+    }
+  }
+
+  /* ==============================
+   MOBILES
+============================== */
+
+  @media (max-width: 760px) {
+    .orientation-layout {
+      width: min(100% - 30px, 520px);
+      margin: 20px auto 35px;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .intro {
+      min-height: 475px;
+      padding: 35px 5px 0;
+    }
+
+    h1 {
+      max-width: 390px;
+      margin: 20px 0 13px;
+      font-size: clamp(39px, 10vw, 49px);
+      letter-spacing: -2px;
+    }
+
+    .intro > p {
+      max-width: 310px;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .student-wrap {
+      right: -10px;
+      width: 76%;
+      height: 290px;
+    }
+
+    .student-wrap::before {
+      right: 15px;
+      width: 230px;
+      height: 230px;
+    }
+
+    .student-wrap::after {
+      right: 0;
+      width: 255px;
+      height: 255px;
+    }
+
+    .floating-note {
+      bottom: 55px;
+      left: 0;
+      padding: 12px 15px;
+    }
+
+    .trust-line {
+      bottom: 3px;
+      font-size: 10px;
+    }
+
+    .quiz-card {
+      padding: 25px 19px;
+      border-radius: 19px;
+    }
+
+    .quiz-head h2 {
+      font-size: 20px;
+    }
+
+    .quiz-card h3 {
+      font-size: 18px;
+    }
+  }
+
+  /* PETITS ÉCRANS */
+
+  @media (max-width: 380px) {
+    .intro {
+      min-height: 430px;
+    }
+
+    h1 {
+      font-size: 37px;
+    }
+
+    .student-wrap {
+      height: 255px;
+    }
+
+    .quiz-card {
+      padding: 21px 15px;
+    }
+
+    .answer {
+      padding: 13px;
+      font-size: 12px;
+    }
+
+    .quiz-actions button {
+      padding: 12px 15px;
+    }
+  }
+
+  /* ACCESSIBILITÉ */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+<section class="orientation-layout">
+  <div
+    style="
+      display: flex;
+      font-weight: bold;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: space-between;
+    "
+  >
+    <div style="display: flex; align-items: center">
+      <div>
+        <img style="width: 70px; height: 70px" src="favicon.png" alt="" />
+      </div>
+      <div><span>UNI</span><span>RANK</span></div>
+    </div>
+    <div style="margin-top: -20px" routerLink="/">←</div>
+  </div>
+  <div class="intro">
+    <div class="eyebrow"><span></span> TROUVEZ VOTRE DIRECTION</div>
+    <h1>Votre avenir mérite <em>le bon choix.</em></h1>
+    <p>
+      Un court parcours pour mieux comprendre vos intérêts et explorer les
+      filières qui peuvent vous correspondre.
+    </p>
+    <div class="student-wrap">
+      <img
+        src="etudiante-orientation.png"
+        alt="Étudiante réfléchissant à son orientation"
+      />
+      <div class="floating-note">
+        Votre potentiel<br /><strong>n’attend que vous.</strong>
+      </div>
+    </div>
+    <div class="trust-line">
+      <span>✦</span> Un guide pour les futurs étudiants en RDC
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-head">
+      <div>
+        <span class="eyebrow">TEST D’ORIENTATION</span>
+        <h2>Apprenons à vous connaître</h2>
+      </div>
+      <strong>{{ step + 1 }}<small> / 3</small></strong>
+    </div>
+    <div class="progress">
+      <span [style.width.%]="((step + 1) / 3) * 100"></span>
+    </div>
+
+    <div *ngIf="!finished">
+      <p class="question-count">QUESTION {{ step + 1 }}</p>
+      <h3>{{ questions[step].title }}</h3>
+      <button
+        class="answer"
+        *ngFor="let option of questions[step].options"
+        [class.selected]="answers[step] === option"
+        (click)="choose(option)"
+      >
+        <span class="radio"></span>{{ option }}<b>→</b>
+      </button>
+      <div class="quiz-actions">
+        <button class="back" (click)="previous()" [disabled]="step === 0">
+          Retour
+        </button>
+        <button class="primary" (click)="next()" [disabled]="!answers[step]">
+          {{ step === 2 ? "Terminer" : "Continuer" }} <span>→</span>
+        </button>
+      </div>
+    </div>
+    <div class="result" *ngIf="finished">
+      <div class="result-icon">✦</div>
+      <h3>Merci pour vos réponses !</h3>
+      <p>
+        Vos choix sont enregistrés dans cette démonstration. La prochaine étape
+        sera de calculer des filières recommandées à partir de vos réponses.
+      </p>
+      <button class="primary full" (click)="restart()">
+        Recommencer le test
+      </button>
+    </div>
+    <p class="privacy">
+      Vos réponses servent uniquement à construire votre profil d’orientation.
+    </p>
+  </div>
+</section>

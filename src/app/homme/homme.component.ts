@@ -23,6 +23,9 @@ export class HommeComponent {
   page() {
     this.router.navigate(['/page']);
   }
+  orientation(){
+    this.router.navigate(['/orientation'])
+  }
 
   // --- MES DONNÉES POUR TES CARTES ---
   universites = [
