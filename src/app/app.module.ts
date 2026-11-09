@@ -17,6 +17,7 @@ import { AproposComponent } from './apropos/apropos.component';
 import { ConfigComponent } from './config/config.component';
 import { ListageAvisComponent } from './listage-avis/listage-avis.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { HommeComponent } from './homme/homme.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
     ConfigComponent,
     ListageAvisComponent,
     DashboardComponent,
+    HommeComponent,
   ],
   imports: [
     BrowserModule,

@@ -401,8 +401,8 @@ export class UniversiteDetailComponent implements OnInit {
         logo: 'https://th.bing.com/th/id/OIP.Pe0rjy1cWm0zWOm8WYVhcwAAAA?w=137&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
         couverture:
           'https://th.bing.com/th/id/OIP.Pe0rjy1cWm0zWOm8WYVhcwAAAA?w=137&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3',
-        id: 'ISSS/CR',
-        nom: 'ISSS/CR',
+        id: 'ISSS',
+        nom: 'ISSS',
         complet: 'Institut Supérieur de Sciences de la Santé de la Croix-Rouge',
       },
       ISS: {

@@ -69,10 +69,10 @@
       <h1>
         Trouve la <br /><span>bonne université</span><br />pour ton avenir.
       </h1>
-      <p>
+      <span>
         Compare les universités de Kinshasa, filtre selon tes critères et fais
         le meilleur choix.
-      </p>
+      </span>
     </section>
 
     <!-- Search Bar -->
@@ -97,14 +97,28 @@
         <h2>Universités populaires</h2>
         <a href="#" routerLink="/page">Voir tout</a>
       </div>
-      <div class="uni-list" class="popular">
+      <!-- class="popular" -->
+      <div class="uni-list">
         <div
           class="uni-card"
           *ngFor="let univ of universites"
           (click)="voirDetail(univ.id)"
         >
-          <img [src]="univ.logo" />
-          <p>{{ univ.nom }}</p>
+          <div class="New-man">
+            <section style="display: flex; justify-content: space-between">
+              <div>
+                <img [src]="univ.logo" />
+                <p>{{ univ.nom }}</p>
+              </div>
+              <div class="store">Domaine</div>
+            </section>
+            <div>
+              <!-- <p>(Espace de Commentaire de chaque utilisateur)</p> -->
+              <p>{{ univ.note }}</p>
+              <!-- <p>(Espace de donnees concernant l'uniersiter)</p> -->
+              <p>{{ univ.desc }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -193,20 +207,24 @@
       <!--  -->
       <!-- ------------------------------------------- -->
       <!-- Carte 1 -->
-<!-- AVIS -->
-<!-- <h1 class="avis">Avis des étudiants</h1> -->
-<hr class="hr" />
+      <!-- AVIS -->
+      <!-- <h1 class="avis">Avis des étudiants</h1> -->
+      <hr class="hr" />
 
-<div *ngIf="isLoadingAvis" style="text-align:center; padding:20px;">
-  Chargement des avis...
-</div>
-<br />
-<div *ngIf="!isLoadingAvis && commentairesAffiches.length === 0" style="text-align:center; padding:20px; color:#888;">
-  Aucun avis pour le moment pour {{ universityIdPourAvis }}.
-</div>
+      <div *ngIf="isLoadingAvis" style="text-align: center; padding: 20px">
+        Chargement des avis...
+      </div>
+      <br />
+      <div
+        *ngIf="!isLoadingAvis && commentairesAffiches.length === 0"
+        style="text-align: center; padding: 20px; color: #888"
+      >
+        Aucun avis pour le moment pour moment.
+        <!-- {{ universityIdPourAvis }} -->
+      </div>
 
-<!-- Les 3 vrais commentaires de ta base -->
-<!-- <div class="review-card" *ngFor="let desc of commentairesAffiches">
+      <!-- Les 3 vrais commentaires de ta base -->
+      <!-- <div class="review-card" *ngFor="let desc of commentairesAffiches">
   <div class="review-top">
     <img class="avatar" [src]="desc.photo || 'https://randomuser.me/api/portraits/men/32.jpg'" />
     <div style="flex: 1">
@@ -252,7 +270,7 @@
     <br />
     <section>
       <!-- Navigation -->
-      <header class="navbar">
+      <!-- <header class="navbar">
         <div class="logo">Uni<span>Rank</span></div>
         <nav class="nav-links">
           <a href="#" class="active">Accueil</a>
@@ -261,7 +279,7 @@
           <a href="#contact">Contact</a>
         </nav>
         <a href="#search" class="btn-primary">Explorer</a>
-      </header>
+      </header> -->
 
       <!-- Hero Section -->
       <section class="hero">
@@ -357,6 +375,27 @@
           </tbody>
         </table>
       </section>
+      <div
+        style="
+          display: flex;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <!-- <button
+          style="
+            width: 180px;
+            font-weight: bold;
+            height: 50px;
+            background: blue;
+            color: white;
+            border-radius: 10px;
+          "
+        >
+          Voir +
+        </button> -->
+      </div>
     </section>
     <br />
     <!-- Why Use Guide -->
@@ -378,6 +417,20 @@
       </div>
     </section>
   </main>
-
   <br />
+  <section *ngIf="nouvellePage === true">
+    <section
+      style="
+        backdrop-filter: blur(12px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        background: #efe6ef;
+      "
+    >
+      <div></div>
+    </section>
+  </section>
 </body>

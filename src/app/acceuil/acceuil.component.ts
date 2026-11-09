@@ -378,9 +378,13 @@ export class AcceuilComponent implements OnInit {
   personnage: any[] = [];
   isLoadingAvis = true;
   universityIdPourAvis = 'ISIPA'; // Change ici pour AUK, UNIKIN etc.
+  nouvellePage: boolean = false;
 
   ngOnInit() {
     this.chargerLesVraisCommentaires();
+    // setTimeout(() => {
+    //   this.nouvellePage = true;
+    // }, 6000);
   }
 
   // --- MENU ---

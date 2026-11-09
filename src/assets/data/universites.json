@@ -1,7 +1,7 @@
 [
   {
     "id": "UNIKIN",
-    "frais": "500$ - 950$ / an",
+    "frais": "",
     "facs": [
       "Droit",
       "Médecine",
@@ -18,7 +18,7 @@
   },
   {
     "id": "I.S.I.P.A",
-    "frais": "640$ - 950$ / an",
+    "frais": "640$ - ...",
     "facs": [
       "Ingenierie En Securite Informatique",
       "Intelligence Artificiel {IA} ",
@@ -39,7 +39,7 @@
 
   {
     "id": "ISTA",
-    "frais": "400$ - 650$ / an",
+    "frais": "",
     "facs": [
       "Mécanique Générale",
       "Mécanique Auto",
@@ -56,7 +56,7 @@
   },
   {
     "id": "ISC",
-    "frais": "450$ - 700$ / an",
+    "frais": "",
     "facs": [
       "Comptabilité",
       "Fiscalité",
@@ -69,22 +69,17 @@
   },
   {
     "id": "ISS",
-    "frais": "400$ - 600$ / an",
+    "frais": "",
     "facs": ["Statistique", "Informatique", "Démographie", "Actuariat"]
   },
   {
-    "id": "UPN",
-    "frais": "350$ - 600$ / an",
-    "facs": ["Pédagogie", "Lettres", "Sciences", "Psychologie"]
-  },
-  {
     "id": "UPC",
-    "frais": "600$ - 1200$ / an",
+    "frais": "",
     "facs": ["Théologie", "Droit", "Médecine", "Economie", "Informatique"]
   },
   {
     "id": "UCC",
-    "frais": "800$ - 1500$ / an",
+    "frais": "",
     "facs": [
       "Théologie",
       "Philosophie",
@@ -94,7 +89,7 @@
   },
   {
     "id": "ISP",
-    "frais": "300$ - 550$ / an",
+    "frais": "",
     "facs": [
       "Math-Info",
       "Biologie-Chimie",
@@ -105,27 +100,22 @@
   },
   {
     "id": "INBTP",
-    "frais": "500$ - 800$ / an",
+    "frais": "",
     "facs": ["Bâtiment", "Travaux Publics", "Topographie", "Géotechnique"]
   },
   {
     "id": "ULK",
-    "frais": "700$ - 1300$ / an",
+    "frais": "",
     "facs": ["Droit", "Médecine", "Economie", "Informatique"]
   },
   {
-    "id": "",
-    "frais": "700$ - 1300$ / an",
-    "facs": ["Coutur", "Médecine", "Economie", "Informatique"]
-  },
-  {
     "id": "UPC",
-    "frais": "600$ - 1200$ / an",
+    "frais": "",
     "facs": ["Théologie", "Droit", "Médecine", "Economie", "Informatique"]
   },
   {
     "id": "UCC",
-    "frais": "800$ - 1500$ / an",
+    "frais": "",
     "facs": [
       "Théologie",
       "Philosophie",
@@ -134,139 +124,94 @@
     ]
   },
   {
-    "id": "UPN",
-    "frais": "350$ - 600$ / an",
-    "facs": ["Pédagogie", "Lettres", "Sciences", "Psychologie"]
-  },
-  {
-    "id": "ULK",
-    "frais": "700$ - 1300$ / an",
-    "facs": ["Droit", "Médecine", "Economie", "Informatique"]
-  },
-  {
-    "id": "ISTA",
-    "frais": "400$ - 650$ / an",
-    "facs": [
-      "Mécanique Générale",
-      "Mécanique Auto",
-      "Aviation",
-      "Electricité Industrielle",
-      "Electronique",
-      "Informatique Industrielle",
-      "Batiment",
-      "Travaux Publics",
-      "Géomètre",
-      "Météorologie",
-      "Environnement"
-    ]
-  },
-  {
-    "id": "ISC",
-    "frais": "",
-    "facs": [
-      "Comptabilité",
-      "Fiscalité",
-      "Marketing",
-      "Commerce International",
-      "Informatique de Gestion",
-      "Secrétariat",
-      "Douane"
-    ]
-  },
-  {
     "id": "IFASIC",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "ISAU",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "ABA",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "ULC",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "USK",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "UNISIC",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "UCKIN",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "USAKIN",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "BELCAMPUS",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "LAU",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "UFA",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "UPDC",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "UCEN",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "AUK",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
     "id": "CEPROMAD",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": ["", ""]
   },
 
   {
     "id": "ISAM",
     "frais": "",
-    "facs": ["", "", "", "", ""]
+    "facs": []
   },
   {
-    "id": "ISSS/C",
+    "id": "ISSS/CR",
     "frais": "",
-    "facs": ["", "", "", "Physique", ""]
+    "facs": ["Soin genereaux", "Sage femme", "Pediatrie", "Saco", "Laboratoire"]
   },
   {
     "id": "ISP",
     "frais": "",
-    "facs": ["", "", "", "", ""]
-  },
-  {
-    "id": "ISS",
-    "frais": "",
-    "facs": ["Informatique", "", "", "Physique", ""]
+    "facs": []
   }
 ]
