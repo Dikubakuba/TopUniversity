@@ -1,16 +1,10 @@
+/* ========== BASE ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
-body {
-  background: #f2f4f7;
-  display: flex;
-  justify-content: center;
-}
-
-/* APPLICATION SANS AUCUN ELEMENT TELEPHONE */
 .app {
   width: 100%;
   max-width: 430px;
@@ -18,105 +12,146 @@ body {
   background: #fff;
   display: flex;
   flex-direction: column;
+  padding-bottom: 78px;
+  margin: 0 auto;
+  overflow: hidden;
 }
-
-li:hover {
-  background: rgba(0, 40, 120, 0.75);
-  color: white;
-  transition: all 1s;
-  padding: 5px;
-}
-/* HEADER */
 .header {
   background:
-    linear-gradient(180deg, rgba(0, 60, 160, 0.15), rgba(0, 40, 120, 0.75)),
+    linear-gradient(180deg, rgba(0, 60, 160, 0.1), rgba(0, 40, 120, 0.75)),
     url("https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80");
   background-size: cover;
   background-position: center;
-  padding: 24px 20px 18px;
-  left: 0;
-  width: 100%;
+  padding: 22px 20px 18px;
   color: #fff;
+  border-radius: 0 0 22px 22px;
+  animation: slideDown 0.8s ease-out;
 }
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 .logo {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: 0.5px;
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-.logo span {
-  font-size: 22px;
+  gap: 8px;
+  animation: fadeInLeft 0.8s ease;
 }
 .menu {
-  font-size: 22px;
+  font-size: 20px;
   cursor: pointer;
+  transition: transform 0.3s;
+}
+.menu:hover {
+  transform: rotate(90deg) scale(1.1);
+}
+.menu:active {
+  transform: scale(0.9);
 }
 .header h1 {
-  font-size: 29px;
+  font-size: 30px;
   line-height: 1.15;
   font-weight: 800;
+  animation: fadeInUp 0.9s ease 0.2s both;
 }
 .header p {
   font-size: 13px;
-  opacity: 0.9;
-  margin: 10px 0 18px;
-  line-height: 1.4;
-  max-width: 280px;
+  opacity: 0.92;
+  margin: 10px 0 16px;
+  line-height: 1.45;
+  max-width: 300px;
+  animation: fadeInUp 0.9s ease 0.4s both;
 }
 .search {
   background: #fff;
   border-radius: 30px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 13px 16px;
   color: #888;
   font-size: 13px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: zoomIn 0.7s ease 0.5s both;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.search:focus-within {
+  transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 86, 214, 0.3);
 }
 .search input {
   border: none;
   outline: none;
   width: 100%;
-  font-size: 13px;
-  color: #333;
+  font-size: 13.5px;
+  color: #222;
 }
-.search input::placeholder {
-  color: #999;
+.content {
+  padding: 18px 18px 0;
 }
 
-/* CONTENU */
-.content {
-  flex: 1;
-  padding: 20px 18px 10px;
-}
+/* ========== GRID ========== */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px 10px;
+  gap: 16px 8px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 .item {
   cursor: pointer;
+  animation: popIn 0.6s ease both;
+  transition: transform 0.25s;
+}
+.item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.item:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.item:hover {
+  transform: translateY(-5px);
+}
+.item:active {
+  transform: scale(0.92);
 }
 .icon {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   margin: 0 auto 8px;
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.item:hover .icon {
+  transform: rotate(-8deg) scale(1.12);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+.icon svg {
+  width: 26px;
+  height: 26px;
 }
 .c1 {
   background: #e8f1ff;
@@ -137,54 +172,325 @@ li:hover {
   background: #e0f2ff;
 }
 .item b {
-  font-size: 11px;
+  font-size: 11.5px;
   line-height: 1.3;
   display: block;
   color: #222;
 }
 
-/* BANNIERE */
+/* ========== BANNER ========== */
 .banner {
-  background:
-    linear-gradient(90deg, rgba(0, 80, 180, 0.85), rgba(0, 80, 180, 0.2)),
-    url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80");
-  background-size: cover;
-  background-position: center;
-  border-radius: 18px;
-  padding: 18px;
-  color: #fff;
+  position: relative;
+  height: 132px;
+  border-radius: 22px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 105px;
+  padding: 18px 18px 18px 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  /* IMAGE DE FOND = étudiants en bibliothèque comme sur ta capture */
+  background: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80");
+  background-size: cover;
+  background-position: center 30%;
+  animation:
+    pulseGlow 2.5s ease-in-out infinite,
+    fadeInUp 0.8s ease both;
+  transition: transform 0.3s;
 }
-.banner b {
-  font-size: 14px;
+.banner:hover {
+  transform: scale(1.02);
+}
+
+/* VOILE BLEU PAR DESSUS LA PHOTO - comme sur ta capture */
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 86, 214, 0.92) 0%,
+    rgba(0, 86, 214, 0.75) 45%,
+    rgba(0, 86, 214, 0.45) 100%
+  );
+}
+
+.banner-text {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
   line-height: 1.35;
-  display: block;
-  max-width: 210px;
+  max-width: 75%;
 }
-.arrow {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
+
+.banner-arrow {
+  position: relative;
+  z-index: 2;
+  min-width: 52px;
+  width: 52px;
+  height: 52px;
   background: #fff;
-  color: #0056d6;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
+  color: #0056d6;
+  font-weight: 700;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  animation: float 2.5s ease-in-out infinite;
+}
+.banner:hover .banner-arrow {
+  transform: translateX(5px) scale(1.1);
+}
+
+/* ========== TITRES ========== */
+.sec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0 12px;
+  animation: fadeInLeft 0.7s ease both;
+}
+.sec-head h2 {
   font-size: 18px;
   font-weight: 800;
 }
+.sec-head a {
+  color: #0056d6;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.sec-head a:hover {
+  transform: translateX(4px);
+}
 
-/* NAV BAS */
+/* ========== CARTES ========== */
+.scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-behavior: smooth;
+}
+.card {
+  min-width: 165px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eef0f3;
+  cursor: pointer;
+  animation: slideInRight 0.6s ease both;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+.card-img {
+  height: 105px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+.card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.15));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card:hover .card-img::after {
+  opacity: 1;
+}
+.fav {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  color: #ff3b30;
+  z-index: 2;
+  transition: transform 0.2s;
+}
+.fav:hover {
+  transform: scale(1.2);
+}
+.fav:active {
+  animation: heartBeat 0.5s ease;
+}
+.card-body {
+  padding: 12px 10px;
+  text-align: center;
+}
+.card-body b {
+  font-size: 15px;
+}
+.card-body p {
+  font-size: 11px;
+  color: #666;
+  margin-top: 6px;
+}
+.badge {
+  font-size: 10px;
+  background: #e8f1ff;
+  color: #0056d6;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 6px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ========== BOURSE ========== */
+.bourse {
+  background: #fff4c5;
+  border-radius: 16px;
+  padding: 14px;
+  margin: 18px 0 6px;
+  display: flex;
+  gap: 12px;
+  animation:
+    shakeX 0.6s ease 1s both,
+    fadeInUp 0.7s ease both;
+  transition: transform 0.3s;
+}
+.bourse:hover {
+  transform: scale(1.02) rotate(-0.5deg);
+}
+.bourse b {
+  font-size: 14.5px;
+}
+.bourse small {
+  font-size: 11.5px;
+  color: #555;
+}
+.avis {
+  background: #fff;
+  border: 1px solid #eef0f3;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  animation: fadeInUp 0.7s ease both;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.avis:hover {
+  transform: translateX(4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.avis img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.avis p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ========== MENU LATERAL ========== */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 220px;
+  height: 100vh;
+  background: #fff;
+  z-index: 99;
+  padding: 20px;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: slideInRight 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.side-menu a {
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f2f4f7;
+  animation: fadeInLeft 0.4s ease both;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.side-menu a:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.side-menu a:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.side-menu a:nth-child(4) {
+  animation-delay: 0.15s;
+}
+.side-menu a:nth-child(5) {
+  animation-delay: 0.2s;
+}
+.side-menu a:hover {
+  background: #0056d6;
+  color: #fff;
+  transform: translateX(-4px);
+}
+.side-menu .close {
+  align-self: flex-end;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.side-menu .close:hover {
+  transform: rotate(90deg);
+}
+
+/* ========== NAV BAR ========== */
 .nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
   display: flex;
   justify-content: space-around;
-  padding: 12px 10px 22px;
+  padding: 10px 10px 18px;
   border-top: 1px solid #eee;
   background: #fff;
+  animation: slideUp 0.6s ease both;
 }
 .nav a {
   text-decoration: none;
@@ -193,12 +499,189 @@ li:hover {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
+  align-items: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    color 0.2s;
 }
 .nav a.active {
   color: #0056d6;
   font-weight: 700;
 }
-.nav span {
-  font-size: 19px;
+.nav a:hover {
+  transform: translateY(-3px);
+}
+.nav a:active {
+  transform: scale(0.9);
+}
+.nav svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s;
+}
+.nav a:hover svg {
+  animation: wiggle 0.5s ease;
+}
+.no-result {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+  animation: fadeInUp 0.5s ease;
+}
+
+/* ================================================= */
+/* ========== LES KEYFRAMES - 12 ANIMATIONS ========== */
+/* ================================================= */
+
+/* 1. Entrée par le bas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 2. Entrée par la gauche */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* 3. Descente du header */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 4. Montée de la nav */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 40px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+/* 5. Entrée par la droite */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* 6. Pop / rebond */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* 7. Zoom */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* 8. Pulsation lumineuse banner */
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 86, 214, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 86, 214, 0);
+  }
+}
+/* 9. Flottement badge */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+/* 10. Coeur qui bat */
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  70% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* 11. Secousse bourse */
+@keyframes shakeX {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+/* 12. Petite danse nav */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
+  }
 }
