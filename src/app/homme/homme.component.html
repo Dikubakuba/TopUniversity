@@ -1,4 +1,23 @@
 <div class="app">
+  <section class="fixed">
+    <div style="padding: 10px" class="topbar">
+      <div class="logo">
+        <!-- ICONE CHAPEAU SVG -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+          <path
+            d="M12 3L1 8l11 5 11-5-11-5zM5 10v6c0 1.5 3 3 7 3s7-1.5 7-3v-6l-7 3-7-3z"
+          />
+        </svg>
+        <span>UNI</span><span style="color: blue">RANK</span>
+      </div>
+      <div class="menu" (click)="menu()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M3 6h18v2H3V6zm3 5h12v2H6v-2zm-3 5h18v2H3v-2z" />
+        </svg>
+      </div>
+    </div>
+  </section>
+  <br /><br /><br />
   <div class="header">
     <div class="topbar">
       <div class="logo">
@@ -8,13 +27,13 @@
             d="M12 3L1 8l11 5 11-5-11-5zM5 10v6c0 1.5 3 3 7 3s7-1.5 7-3v-6l-7 3-7-3z"
           />
         </svg>
-        UNI<span style="color: blue">RANK</span>
+        <span>UNI</span><span style="color: blue">RANK</span>
       </div>
-      <div class="menu" (click)="menu()">
+      <!-- <div class="menu" (click)="menu()">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
           <path d="M3 6h18v2H3V6zm3 5h12v2H6v-2zm-3 5h18v2H3v-2z" />
         </svg>
-      </div>
+      </div> -->
     </div>
     <h1>Ton avenir<br />commence ici</h1>
     <p>
@@ -41,6 +60,7 @@
     <a (click)="go('Universités')">Universités</a>
     <a (click)="go('Bourses')">Bourses</a>
     <a (click)="go('Profil')">Profil</a>
+    <a (click)="go('')">A Propos</a>
   </div>
 
   <div class="content">
@@ -96,7 +116,8 @@
         </div>
         <b>Carte<br />universitaire</b>
       </div>
-      <div class="item" (click)="go('Liste')">
+      <!-- <div class="item" (click)="go('/')"> -->
+      <div class="item" (click)="page()">
         <div class="icon c6">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="#0288d1">
             <path
@@ -116,7 +137,7 @@
     </div>
     <div class="sec-head">
       <h2>Top Universités à Kinshasa</h2>
-      <a href="#">Voir tout ›</a>
+      <a href="#" routerLink="/page">Voir tout ›</a>
     </div>
 
     <div class="scroll">
@@ -152,24 +173,19 @@
       <h2>Ils ont trouvé leur voie</h2>
       <a href="#">Tous les avis ›</a>
     </div>
-    <div class="avis">
-      <img
-        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&q=80"
-      />
+    <div class="avis" *ngFor="let infos of avis">
+      <img [src]="infos.lien" />
       <div>
         <p>
-          “Grâce à UNIRANK j'ai comparé 5 universités et trouvé la bourse
-          parfaite.”
+          {{ infos.descrip }}
         </p>
-        <b>Prince</b
-        ><span style="font-size: 11px; color: #777"
-          >Étudiant en Informatique</span
-        >
+        <b>{{ infos.nom }} </b
+        ><span style="font-size: 11px; color: #777"> {{ infos.filiere }}</span>
       </div>
     </div>
   </div>
 </div>
-
+<!-- NAV -->
 <div class="nav">
   <a class="active">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="#0056d6">

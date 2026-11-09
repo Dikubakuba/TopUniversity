@@ -24,7 +24,7 @@
   background-position: center;
   padding: 22px 20px 18px;
   color: #fff;
-  border-radius: 0 0 22px 22px;
+  border-radius: 22px;
   animation: slideDown 0.8s ease-out;
 }
 .topbar {
@@ -371,7 +371,9 @@
 
 /* ========== BOURSE ========== */
 .bourse {
-  background: #fff4c5;
+  /* background: #fff4c5; */
+  background: rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   padding: 14px;
   margin: 18px 0 6px;
@@ -684,4 +686,16 @@
   75% {
     transform: rotate(10deg);
   }
+}
+
+.fixed {
+  position: fixed;
+  /* background: rgba(255, 255, 255, 0.8); */
+  background: rgba(0, 0, 0, 0.852);
+  color: white;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 999;
 }
