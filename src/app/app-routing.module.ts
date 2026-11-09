@@ -14,7 +14,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { HommeComponent } from './homme/homme.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+  { path: '', redirectTo: 'homme', pathMatch: 'full' },
   { path: 'accueil', component: AcceuilComponent },
   { path: 'page', component: PageComponent },
   { path: 'universite/:id', component: UniversiteDetailComponent },

@@ -1,44 +1,113 @@
 <body>
-
-<div class="app">
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="topbar">
-      <div class="logo"><span>🎓</span> UNIRANK</div>
-      <div class="menu">☰</div>
+  <div class="app">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="topbar">
+        <div class="logo">
+          <span>
+            <img
+              style="width: 30px; border-radius: 50%; height: 30px"
+              class="img"
+              src="logoUniv.jpeg"
+              alt="Logo Chapeau"
+            />
+          </span>
+          UNI <span style="color: blue">RANK</span>
+        </div>
+        <div class="menu" (click)="menu()">☰</div>
+      </div>
+      <section
+        style="
+          background: rgba(255, 255, 255, 0.8);
+          color: black;
+          padding: 50px;
+          z-index: 999;
+          width: 80%;
+          right: 0;
+          backdrop-filter: blur(14px);
+          height: 100vh;
+          position: fixed;
+          top: 0;
+        "
+        *ngIf="menus === false"
+      >
+        <strong (click)="menu()">X</strong>
+        <ul
+          style="
+            text-align: right;
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+          "
+        >
+          <li>Homme</li>
+          <li>Liste</li>
+          <li>IA</li>
+          <li>Guide</li>
+          <li>A Propos</li>
+        </ul>
+      </section>
+      <h1>Ton avenir<br />commence ici</h1>
+      <p>
+        Trouvez la meilleure université et la formation qui vous correspond en
+        RDC.
+      </p>
+      <div class="search">
+        🔍
+        <input
+          type="text"
+          placeholder="Rechercher une université, une filière..."
+        />
+      </div>
     </div>
-    <h1>Ton avenir<br>commence ici</h1>
-    <p>Trouvez la meilleure université et la formation qui vous correspond en RDC.</p>
-    <div class="search">🔍 <input type="text" placeholder="Rechercher une université, une filière..."></div>
-  </div>
 
-  <!-- GRID -->
-  <div class="content">
-    <div class="grid">
-      <div class="item"><div class="icon c1">🧭</div><b>Test<br>d'orientation</b></div>
-      <div class="item"><div class="icon c2">🏛️</div><b>Comparateur<br>d'universités</b></div>
-      <div class="item"><div class="icon c3">✅</div><b>Vérification<br>des universités</b></div>
-      <div class="item"><div class="icon c4">🎓</div><b>Bourses & Stages</b></div>
-      <div class="item"><div class="icon c5">🗺️</div><b>Carte<br>universitaire</b></div>
-      <div class="item"><div class="icon c6">🤖</div><b>Assistant IA</b></div>
+    <!-- GRID -->
+    <div class="content">
+      <div class="grid">
+        <div class="item">
+          <div class="icon c1">🧭</div>
+          <b>Test<br />d'orientation</b>
+        </div>
+        <div class="item">
+          <div class="icon c2">🏛️</div>
+          <b>Comparateur<br />d'universités</b>
+        </div>
+        <div class="item">
+          <div class="icon c3">✅</div>
+          <b>Vérification<br />des universités</b>
+        </div>
+        <div class="item">
+          <div class="icon c4">🎓</div>
+          <b>Bourses & Stages</b>
+        </div>
+        <div class="item">
+          <div class="icon c5">🗺️</div>
+          <b>Carte<br />universitaire</b>
+        </div>
+        <div class="item" (click)="redirecto()">
+          <div class="icon c6">🤖</div>
+          <b>Liste de Universite Kinshasa</b>
+        </div>
+        <!-- <div class="item">
+          <div class="icon c6">🤖</div>
+          <b>Assistant IA</b>
+        </div> -->
+      </div>
+
+      <!-- BANNIERE -->
+      <div class="banner">
+        <b>Des milliers d'étudiants ont déjà trouvé leur voie. Et toi ?</b>
+        <div class="arrow">→</div>
+      </div>
     </div>
 
-    <!-- BANNIERE -->
-    <div class="banner">
-      <b>Des milliers d'étudiants ont déjà trouvé leur voie. Et toi ?</b>
-      <div class="arrow">→</div>
+    <!-- NAV -->
+    <div class="nav">
+      <a href="#" class="active"><span>🏠</span>Accueil</a>
+      <a href="#"><span>🏛️</span>Universités</a>
+      <a href="#"><span>♡</span>Favoris</a>
+      <a href="#"><span>👤</span>Profil</a>
     </div>
   </div>
-
-  <!-- NAV -->
-  <div class="nav">
-    <a href="#" class="active"><span>🏠</span>Accueil</a>
-    <a href="#"><span>🏛️</span>Universités</a>
-    <a href="#"><span>♡</span>Favoris</a>
-    <a href="#"><span>👤</span>Profil</a>
-  </div>
-
-</div>
-
 </body>
